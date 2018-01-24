@@ -1,0 +1,10 @@
+https://www.raspberrypi.org/documentation/hardware/raspberrypi/spi/README.md
+
+https://github.com/bootc/linux/blob/073993b3f3e23fb8d376f9e159eee410968e0c57/arch/arm/mach-bcm2708/bcm2708.c
+
+https://www.bootc.net/archives/2012/05/19/spi-on-the-raspberry-pi-again/
+
+			- https://github.com/bootc/linux/tree/rpi-i2cspi
+
+
+https://github.com/raspberrypi/linux/issues/2094
