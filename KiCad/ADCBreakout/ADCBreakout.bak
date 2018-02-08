@@ -124,12 +124,12 @@ Text GLabel 3475 2425 2    35   Input ~ 0
 GND
 Text GLabel 3475 2525 2    35   Input ~ 0
 IN2
-Text GLabel 3475 2625 2    35   Input ~ 0
-SCLK
-Text GLabel 3475 2725 2    35   Input ~ 0
-DOUT
-Text GLabel 3475 2825 2    35   Input ~ 0
-DIN
 Text GLabel 3475 2925 2    35   Input ~ 0
+SCLK
+Text GLabel 3475 2825 2    35   Input ~ 0
+DOUT
+Text GLabel 3475 2725 2    35   Input ~ 0
+DIN
+Text GLabel 3475 2625 2    35   Input ~ 0
 IN1
 $EndSCHEMATC
