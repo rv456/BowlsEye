@@ -1,0 +1,10 @@
+A typical application of the ADC122S101 is shown in Figure 52. Power is provided, in this example, by the
+LP2950 low-dropout voltage regulator, available in a variety of fixed and adjustable output voltages. The power
+supply pin is bypassed with a capacitor network located close to the ADC122S101. Because the reference for
+the ADC122S101 is the supply voltage, any noise on the supply will degrade device noise performance. To keep
+noise off the supply, use a dedicated linear regulator for this device, or provide sufficient decoupling from other
+circuitry to keep noise off the ADC122S101 supply pin. Because of the ADC122S101's low power requirements,
+it is also possible to use a precision reference as a power supply to maximize performance. The four-wire
+interface is shown connected to a microprocessor or DSP
+
+VA == REFERENCE!!
