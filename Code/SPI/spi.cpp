@@ -18,25 +18,23 @@ int main(int argc, char** argv){
 	wiringPiSetup();
 	
 	GPIOClass led(0, MODE_OUTPUT_);
-	GPIOClass vRef(1, MODE_OUTPUT_);
 	
 	led.high();
-	vRef.high();
 		
 	wiringPiSPISetup(0, 500000);
 		
 	unsigned char buffer[2];
 		
-	int i, j;
+	int i;
 	
 	for(;;){
 		
 		wiringPiSPIDataRW(0, buffer, 2);
 		
-		i = static_cast<int>(buffer[0]) << 7;
-		j = static_cast<int>(buffer[1]);
+		i = (static_cast<int>(buffer[0]) << 7) | (static_cast<int>(buffer[1]));
 		
-		cout << ((i | j) & 0x0FFF) << endl;
+		
+		cout << ((i) & 0x0FFF) << endl;
 		
 	}
 		
