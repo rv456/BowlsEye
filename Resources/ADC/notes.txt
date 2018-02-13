@@ -8,3 +8,10 @@ it is also possible to use a precision reference as a power supply to maximize p
 interface is shown connected to a microprocessor or DSP
 
 VA == REFERENCE!!
+
+|XXXXXXXX| = |DC, DC, ADD2, ADD1, ADD0, DC, DC, DC|
+
+ADD2 | ADD1 | ADD0| Input Channel
+X	 | 0	| 0	  | IN1 (default) 
+X    | 0    | 1   |	IN2
+X    | 1    | X   | Not allowed, the output is indeterminate if ADD1 is high
