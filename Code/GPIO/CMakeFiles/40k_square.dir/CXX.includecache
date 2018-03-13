@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/pi/Project/BowlsEye/Code/GPIO/40k_square.cpp
+wiringPi.h
+-
+signal.h
+-
+iostream
+-
+myTimer.h
+/home/pi/Project/BowlsEye/Code/GPIO/myTimer.h
+
+/home/pi/Project/BowlsEye/Code/GPIO/CppTimer.h
+stdlib.h
+-
+unistd.h
+-
+stdio.h
+-
+signal.h
+-
+time.h
+-
+
+/home/pi/Project/BowlsEye/Code/GPIO/myTimer.h
+CppTimer.h
+/home/pi/Project/BowlsEye/Code/GPIO/CppTimer.h
+

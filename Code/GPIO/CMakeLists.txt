@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 2.8.9)
+project (40k_square)
+add_executable(40k_square 40k_square.cpp)
+set (CMAKE_CXX_STANDARD 11)
+TARGET_LINK_LIBRARIES(40k_square wiringPi rt)
