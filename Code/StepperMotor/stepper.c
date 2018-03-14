@@ -23,13 +23,30 @@ int main(int argc, char** argv)
 
     if (pi < 0) return -1;
    
-    StepperMotor_construct(&stepper);
+    StepperMotor_construct(&stepper, 100);
 
    
     while(RUN){  
+		
+		for(uint8_t i=0; i<4; i++){
 
-		StepperMotor_incrementStep(&stepper);
+			StepperMotor_update(&stepper);
+			time_sleep(0.2);
 
+		}
+	
+		StepperMotor_setDirection(&stepper, DIRECTION_ANTICLOCKWISE_);
+		
+		StepperMotor_setStepSize(&stepper, 200);
+		
+		for(uint8_t i=0; i<4; i++){
+			
+			StepperMotor_update(&stepper);
+			time_sleep(0.2);
+		}
+		
+		StepperMotor_setDirection(&stepper, DIRECTION_CLOCKWISE_);
+		StepperMotor_setStepSize(&stepper, 100);
     }
 
     printf("\ntidying up\n");
