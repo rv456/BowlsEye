@@ -19,15 +19,9 @@ In order to accurately detect the distance between the jack and surrounding bowl
 
 The responsiveness of our distance sensor will be dictated by the required distance resolution, ie. a higher axial resolution will require a larger amount of data from the ultrasonic sensors to the be processed, thus slow overall responsiveness. Similarly, using a small angular step will increase the time taken to perform a full rotation. Finally, the time for a single scan to be performed in the absence of a detectable object, ie. the maximum range to be found, dictated by the wait time before moving to the next scan, will greatly impact the responsiveness of the application. All of these parameters will be user controllable via the GUI and so may be optimised for their desired time/accuracy result.
 
-The ADC sampling rate will be between 500k-1MS/s using SPI with two channels. For a single A-scan with a maximum range of 1m there will be ~6s of data to be stored, which will be between 3 million to 6 million samples, corresponding to a detection resolution of ~50um. The Rpi will perform threshold detection to estimate the distance to an object per single scan and output this distance along with the angular position via Bluetooth for real-time display. This may require the use of three threads; one for transducer excitation and ADC sampling, one for data processing and one for data output. The GUI will be constructed using PyQT and will use QTthreads for 'listening' to the data received from the Rpi via bluetooth and to construct the final display of objects.
+The ADC sampling rate will be between 500k-1MS/s using SPI with two channels. For a single A-scan with a maximum range of 1m there will be ~6s of data to be stored, which will be between 3 million to 6 million samples, corresponding to a detection resolution of ~500um. The Rpi will perform threshold detection to estimate the distance to an object per single scan and output this distance along with the angular position via Bluetooth for real-time display. This may require the use of three threads; one for transducer excitation and ADC sampling, one for data processing and one for data output. The GUI will be constructed using PyQT and will use QTthreads for 'listening' to the data received from the Rpi via bluetooth and to construct the final display of objects.
 
 A system overview is shown below, and you can follow our progress via this git, or our [facebook](https://www.facebook.com/Bowls-Eye-102409543919161/) or [twitter](https://twitter.com/bowlseyepi).
 
 
 ![Alternative text](Resources/Misc/blockDiagram.png)
-
-
-
-
-
-
