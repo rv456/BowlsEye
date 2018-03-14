@@ -10,13 +10,8 @@ class input_form(QWidget):
     def __init__(self):
         super().__init__()
         self.initUI()
-        self.show()
 
     def initUI(self):
-        #initialise custom widgets
-        self.initbuttons()
-
-    def initbuttons(self):
         #Labels for input boxes
         label1=QLabel()
         label1.setText("Sample Rate")
@@ -44,12 +39,12 @@ class input_form(QWidget):
         form.addRow(label3,in3)
 
         #Create start/stop scan Buttons with layout
-        start=QPushButton("Start")
-        stop=QPushButton("Stop")
+        self.start=QPushButton("Start")
+        self.stop=QPushButton("Stop")
 
         ctrl=QHBoxLayout()
-        ctrl.addWidget(start)
-        ctrl.addWidget(stop)
+        ctrl.addWidget(self.start)
+        ctrl.addWidget(self.stop)
 
         b_h = QHBoxLayout ()
         b_h.addLayout(form)

@@ -9,10 +9,7 @@ import sys, random
 class draw(QWidget):
     def __init__(self):
         super().__init__()
-    #    def start(self):
-    #        timer = QTimer()
-    #        timer.timeout.connect(draw.update)
-    #        timer.start(1000)
+        self.i=0
 
     def paintEvent(self,e):
         qp=QPainter()
@@ -23,14 +20,10 @@ class draw(QWidget):
     def draw_widget(self,qp):
         rectangle=QRect(QPoint(1, 20), QSize(200, 200))
         pen=QPen(QColor(20, 20, 20), 1, Qt.SolidLine)
-        dot=QPen(QColor(20, 20, 20), 1, Qt.SolidLine)
         pen.setWidth(2)
-        dot.setWidth(5)
         qp.setPen(pen)
-        qp.drawArc(rectangle,0,360*16)
-        qp.setPen(dot)
-        #for i in range(0,self.i):
-            #qp.drawPoint(random.randint(0,200),random.randint(0,200))
+
+        qp.drawArc(rectangle,0,self.i*16)
 
 
 class window(QWidget):
@@ -39,16 +32,23 @@ class window(QWidget):
         self.initUI()
 
     def initUI(self):
-        arc=draw()
-        slider=QSlider(Qt.Horizontal,self)
+        self.arc=draw()
+        self.slider=QSlider(Qt.Horizontal,self)
+        self.slider.setMaximum(360)
+        self.slider.valueChanged.connect(self.drawCircle)
 
         layout=QVBoxLayout()
-        layout.addWidget(arc)
+        layout.addWidget(self.arc)
         layout.stretch(1)
-        layout.addWidget(slider)
+        layout.addWidget(self.slider)
 
         self.setLayout(layout)
         self.setGeometry(250,250,290,300)
+
+    def drawCircle(self):
+        self.arc.i=self.slider.value()
+        self.arc.repaint()
+        print(self.slider.value())
 
 
 
