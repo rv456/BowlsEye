@@ -116,4 +116,6 @@ Wire Wire Line
 	1850 2150 1750 2150
 Wire Wire Line
 	1750 2150 1750 2200
+Text Notes 5125 3350 0    394  ~ 79
+TBC
 $EndSCHEMATC

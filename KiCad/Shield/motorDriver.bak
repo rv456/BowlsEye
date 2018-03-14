@@ -86,8 +86,6 @@ Text GLabel 5850 2900 2    35   Input ~ 0
 PHASE_B
 Text GLabel 5850 3000 2    35   Input ~ 0
 PHASE_B-
-NoConn ~ 5750 3500
-NoConn ~ 5750 3600
 $Comp
 L GNDD #PWR?
 U 1 1 5AA6A83B
@@ -219,4 +217,22 @@ Wire Wire Line
 	4650 2700 4750 2700
 Wire Wire Line
 	4750 2800 4650 2800
+Wire Wire Line
+	5750 3500 5850 3500
+Wire Wire Line
+	5850 3500 5850 3700
+Wire Wire Line
+	5850 3600 5750 3600
+Connection ~ 5850 3600
+$Comp
+L GNDD #PWR?
+U 1 1 5AA879F1
+P 5850 3700
+F 0 "#PWR?" H 5850 3450 50  0001 C CNN
+F 1 "GNDD" H 5850 3575 50  0000 C CNN
+F 2 "" H 5850 3700 50  0001 C CNN
+F 3 "" H 5850 3700 50  0001 C CNN
+	1    5850 3700
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

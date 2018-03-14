@@ -11490,16 +11490,16 @@ F 3 "" H 5950 3975 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4850 3425 4450 3425
+	4250 3425 4850 3425
 $Comp
 L GNDD #PWR?
 U 1 1 5AA7FC0B
-P 4450 3475
-F 0 "#PWR?" H 4450 3225 50  0001 C CNN
-F 1 "GNDD" H 4450 3350 50  0000 C CNN
-F 2 "" H 4450 3475 50  0001 C CNN
-F 3 "" H 4450 3475 50  0001 C CNN
-	1    4450 3475
+P 4250 3475
+F 0 "#PWR?" H 4250 3225 50  0001 C CNN
+F 1 "GNDD" H 4250 3350 50  0000 C CNN
+F 2 "" H 4250 3475 50  0001 C CNN
+F 3 "" H 4250 3475 50  0001 C CNN
+	1    4250 3475
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -11518,21 +11518,15 @@ $EndComp
 Wire Wire Line
 	5350 4425 5950 4425
 Wire Wire Line
-	5350 4625 5950 4625
-Wire Wire Line
 	4850 4925 4750 4925
 Wire Wire Line
 	4750 4925 4750 4975
-Wire Wire Line
-	5950 4625 5950 4675
 Wire Wire Line
 	5950 4425 5950 4475
 Wire Wire Line
 	5950 3925 5950 3975
 Wire Wire Line
 	5950 3225 5950 3275
-Wire Wire Line
-	4450 3425 4450 3475
 Wire Wire Line
 	4650 4225 4650 4275
 $Comp
@@ -11549,12 +11543,12 @@ $EndComp
 $Comp
 L GNDD #PWR?
 U 1 1 5AA7FEE1
-P 5950 4675
-F 0 "#PWR?" H 5950 4425 50  0001 C CNN
-F 1 "GNDD" H 5950 4550 50  0000 C CNN
-F 2 "" H 5950 4675 50  0001 C CNN
-F 3 "" H 5950 4675 50  0001 C CNN
-	1    5950 4675
+P 5550 4675
+F 0 "#PWR?" H 5550 4425 50  0001 C CNN
+F 1 "GNDD" H 5550 4550 50  0000 C CNN
+F 2 "" H 5550 4675 50  0001 C CNN
+F 3 "" H 5550 4675 50  0001 C CNN
+	1    5550 4675
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -11577,15 +11571,7 @@ ULTRA_TX2
 Wire Wire Line
 	5450 4525 5350 4525
 Text Notes 1300 7050 0    197  ~ 39
-ToDo:\nAdd motor driver EnA, EnB\nAdd motor driver Control signals\nAdd ref/reg supply for ADC
-Wire Notes Line
-	1150 5600 6350 5600
-Wire Notes Line
-	1150 5600 1150 7225
-Wire Notes Line
-	1150 7225 6350 7225
-Wire Notes Line
-	6350 7225 6350 5600
+ToDo:\nAdd ref/reg supply for ADC
 Wire Wire Line
 	7425 3975 7425 4075
 $Comp
@@ -11616,4 +11602,42 @@ $EndComp
 Wire Wire Line
 	7600 4325 7425 4325
 Connection ~ 7425 4325
+Wire Wire Line
+	4850 3525 4750 3525
+Wire Wire Line
+	4850 3625 4750 3625
+Wire Wire Line
+	4850 3725 4750 3725
+Wire Wire Line
+	5350 3725 5450 3725
+Text GLabel 4750 3525 0    35   Input ~ 0
+MOTOR_1_1
+Text GLabel 4750 3625 0    35   Input ~ 0
+MOTOR_1_2
+Text GLabel 4750 3725 0    35   Input ~ 0
+MOTOR_1_3
+Text GLabel 5450 3725 2    35   Input ~ 0
+MOTOR_1_4
+Wire Wire Line
+	4850 3125 4750 3125
+Text GLabel 4750 3125 0    35   Input ~ 0
+MOTOR_ENA
+Text GLabel 4750 3225 0    35   Input ~ 0
+MOTOR_ENB
+Wire Notes Line
+	1150 7225 1150 6325
+Wire Notes Line
+	1150 6325 5550 6325
+Wire Notes Line
+	5550 6325 5550 7225
+Wire Notes Line
+	5550 7225 1150 7225
+Wire Wire Line
+	4750 3225 4850 3225
+Wire Wire Line
+	4250 3425 4250 3475
+Wire Wire Line
+	5350 4625 5550 4625
+Wire Wire Line
+	5550 4625 5550 4675
 $EndSCHEMATC

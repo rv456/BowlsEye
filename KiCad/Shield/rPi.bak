@@ -11616,4 +11616,28 @@ $EndComp
 Wire Wire Line
 	7600 4325 7425 4325
 Connection ~ 7425 4325
+Wire Wire Line
+	5350 3525 5450 3525
+Wire Wire Line
+	5350 3625 5450 3625
+Wire Wire Line
+	5350 3725 5450 3725
+Wire Wire Line
+	5350 3825 5450 3825
+Text GLabel 5450 3525 2    35   Input ~ 0
+MOTOR_1_1
+Text GLabel 5450 3625 2    35   Input ~ 0
+MOTOR_1_2
+Text GLabel 5450 3725 2    35   Input ~ 0
+MOTOR_1_3
+Text GLabel 5450 3825 2    35   Input ~ 0
+MOTOR_1_4
+Wire Notes Line
+	5800 3475 5875 3475
+Wire Notes Line
+	5875 3475 5875 3875
+Wire Notes Line
+	5875 3875 5800 3875
+Text Notes 5925 3750 0    35   ~ 0
+Arbitrary pins,\nmove to fit\nlayout
 $EndSCHEMATC
