@@ -33,6 +33,7 @@ LIBS:contrib
 LIBS:valves
 LIBS:adc122s101
 LIBS:l298_th
+LIBS:transducer
 LIBS:Proto1-cache
 EELAYER 25 0
 EELAYER END

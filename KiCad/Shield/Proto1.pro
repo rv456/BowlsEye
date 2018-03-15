@@ -1,4 +1,4 @@
-update=Wed 14 Mar 2018 19:34:40 GMT
+update=Thu 15 Mar 2018 22:58:38 GMT
 version=1
 last_client=eeschema
 [general]
@@ -65,3 +65,14 @@ LibName31=contrib
 LibName32=valves
 LibName33=adc122s101
 LibName34=l298_th
+LibName35=transducer
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=Pcbnew
+SpiceForceRefPrefix=0
+SpiceUseNetNumbers=0
+LabSize=60
