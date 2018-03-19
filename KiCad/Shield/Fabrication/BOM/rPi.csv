@@ -1,0 +1,7 @@
+Refs,datasheet,footprint,value,part#,rs#
+C1,,Capacitors_THT:C_Rect_L7.2mm_W3.0mm_P5.00mm_FKS2_FKP2_MKS2_MKP2,100nF,UofG,
+D5,,LEDs:LED_D3.0mm,LED,UofG,
+J1,,Pin_Headers:Pin_Header_Straight_2x20_Pitch2.54mm,CONN_02X20,UofG,
+R20,,Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,0R,UofG,
+R21,,Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,R,UofG,
+U1,,BowlsEye:MyVSSOP-8_3.0x3.0mm_Pitch0.65mm,ADC122S101,ADC122S101CIMM/NOPB ,651-2278

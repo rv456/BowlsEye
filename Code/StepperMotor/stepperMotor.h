@@ -1,5 +1,12 @@
-#ifndef __STEPPERMOTOR_H_
-#define __STEPPERMOTOR_H_
+/*!
+ * @file stepperMotor.h
+ *
+ * 
+ * @author Harvey Leicester
+ */
+
+#ifndef STEPPERMOTOR_H_
+#define STEPPERMOTOR_H_
 
 #include <pigpiod_if2.h>
 
@@ -20,13 +27,16 @@
 
 typedef struct StepperMotor_t StepperMotor_t;
 
+/*!
+ * Structure for interfacing with stepper motor and its dual H bridge driver
+ */
 struct StepperMotor_t{
-	
-	void (*step[NO_STEPS_])(StepperMotor_t *stepper);
-	uint8_t pinEnA, pinEnB, pinA0, pinA1, pinB0, pinB1;
-	int8_t currentStep;
-	double waitTime;
-	uint8_t direction, stepMultiple;
+
+	void (*step[NO_STEPS_])(StepperMotor_t *stepper);   /*!Contains the methods for performing each step<*/
+	uint8_t pinEnA, pinEnB, pinA0, pinA1, pinB0, pinB1;	/*!<The pins used to enable the coils of the motor*/
+	int8_t currentStep;									/*!<Current step of the motor*/
+	double waitTime;									/*!<Time to wait/delay between steps*/
+	uint8_t direction, stepMultiple; 					/*!<Rotational direction and angular resolution*/
 };
 
 StepperMotor_t stepper;
@@ -48,4 +58,5 @@ void StepperMotor_step1(StepperMotor_t *stepper);
 void StepperMotor_step2(StepperMotor_t *stepper);
 void StepperMotor_step3(StepperMotor_t *stepper);
 
-#endif
+#endif /* STEPPERMOTOR_H_ */
+
