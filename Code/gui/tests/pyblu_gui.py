@@ -35,7 +35,7 @@ class teeth_widget(QWidget):
 	def create_server(self):
 		addr=(self.nearby_devices[0][self.devices.currentIndex()])
 		self.client_socket=BluetoothSocket(RFCOMM)
-		self.client_socket.connect((addr,3))
+		self.client_socket.connect((addr,1))
 		self.client_socket.send("Hello World")
 		print('finished')
 		self.client_socket.close()
