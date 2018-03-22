@@ -1,7 +1,0 @@
-<map id="StepperMotor_construct" name="StepperMotor_construct">
-<area shape="rect" id="node2" href="$stepperMotor_8c.html#a71514e4505f0544b5688dee266bb4ea8" title="StepperMotor_enable" alt="" coords="215,5,360,32"/>
-<area shape="rect" id="node3" href="$stepperMotor_8c.html#ae136479519df57351f0bd107b5770b91" title="StepperMotor_step0" alt="" coords="218,56,357,83"/>
-<area shape="rect" id="node4" href="$stepperMotor_8c.html#a663cf11ddb011f33ce6f35351cf76c37" title="StepperMotor_step1" alt="" coords="218,107,357,133"/>
-<area shape="rect" id="node5" href="$stepperMotor_8c.html#ac084fe5212ef9076f6a9b7e5db4a0f7a" title="StepperMotor_step2" alt="" coords="218,157,357,184"/>
-<area shape="rect" id="node6" href="$stepperMotor_8c.html#ab6fb336a400422d16086fbbbd720b6e0" title="StepperMotor_step3" alt="" coords="218,208,357,235"/>
-</map>
