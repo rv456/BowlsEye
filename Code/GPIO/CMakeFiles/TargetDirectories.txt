@@ -1,3 +1,0 @@
-/home/pi/Project/BowlsEye/Code/GPIO/CMakeFiles/rebuild_cache.dir
-/home/pi/Project/BowlsEye/Code/GPIO/CMakeFiles/edit_cache.dir
-/home/pi/Project/BowlsEye/Code/GPIO/CMakeFiles/40k_square.dir

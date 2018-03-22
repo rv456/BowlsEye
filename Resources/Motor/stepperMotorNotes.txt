@@ -1,7 +1,0 @@
-4 wire - NEEDS bipolar driver
-
-bipolar driver -> 2x H-bridge : https://learn.adafruit.com/all-about-stepper-motors/driving-a-stepper
-
-http://www.instructables.com/id/How-to-use-a-Stepper-Motor/
-
-https://www.youtube.com/watch?v=bkqoKWP4Oy4

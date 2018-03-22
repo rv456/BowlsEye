@@ -1,1 +1,0 @@
-/usr/bin/c++      CMakeFiles/40k_square.dir/40k_square.cpp.o  -o 40k_square -rdynamic -lwiringPi -lrt 

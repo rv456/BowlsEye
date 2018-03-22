@@ -1,5 +1,0 @@
-Refs,datasheet,footprint,value,part#,rs#
-C2,,Capacitors_THT:C_Rect_L7.2mm_W3.0mm_P5.00mm_FKS2_FKP2_MKS2_MKP2,100nF,UofG,
-C3,,Capacitors_THT:C_Rect_L7.2mm_W3.0mm_P5.00mm_FKS2_FKP2_MKS2_MKP2,100nF,UofG,
-J2,,Connectors_Terminal_Blocks:TerminalBlock_Altech_AK300-4_P5.00mm,CONN_01X04,UofG,
-U2,,TO_SOT_Packages_THT:TO-220-15_Vertical_StaggeredType1,L298_TH,UofG,
