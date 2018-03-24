@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['currentstep',['currentStep',['../structStepperMotor__t.html#a1df55004d1659bf9defdb40a84b333e7',1,'StepperMotor_t']]]
+  ['addr',['addr',['../structBluetoothClient__t.html#afda9c42ce160eb76b1c8f6375f721e2f',1,'BluetoothClient_t']]]
 ];

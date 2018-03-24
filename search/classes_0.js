@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['steppermotor_5ft',['StepperMotor_t',['../structStepperMotor__t.html',1,'']]]
+  ['bluetoothclient_5ft',['BluetoothClient_t',['../structBluetoothClient__t.html',1,'']]],
+  ['bluetoothserver_5ft',['BluetoothServer_t',['../structBluetoothServer__t.html',1,'']]]
 ];

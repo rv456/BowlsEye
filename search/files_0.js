@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['steppermotor_2ec',['stepperMotor.c',['../stepperMotor_8c.html',1,'']]],
-  ['steppermotor_2eh',['stepperMotor.h',['../stepperMotor_8h.html',1,'']]]
+  ['bluetoothcontroller_2ec',['bluetoothController.c',['../bluetoothController_8c.html',1,'']]],
+  ['bluetoothcontroller_2eh',['bluetoothController.h',['../bluetoothController_8h.html',1,'']]]
 ];
