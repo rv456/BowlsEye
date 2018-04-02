@@ -36,12 +36,14 @@ struct StepperMotor_t{
 	uint8_t pinEnA, pinEnB, pinA0, pinA1, pinB0, pinB1;	/*!<The pins used to enable the coils of the motor*/
 	int8_t currentStep;									/*!<Current step of the motor*/
 	double waitTime;									/*!<Time to wait/delay between steps*/
-	uint8_t direction, stepMultiple; 					/*!<Rotational direction and angular resolution*/
+	uint16_t *direction; 									/*!<Rotational direction*/
+	uint16_t *stepMultiple;								/*!<Angular resolution*/
+
 };
 
 StepperMotor_t stepper;
 
-void StepperMotor_construct(StepperMotor_t *stepper, uint8_t multiple);
+void StepperMotor_construct(StepperMotor_t *stepper, uint16_t *userParams);
 void StepperMotor_enable(StepperMotor_t *stepper);
 void StepperMotor_update(StepperMotor_t *stepper);
 void StepperMotor_setDirection(StepperMotor_t *stepper, uint8_t direction);

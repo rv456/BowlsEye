@@ -2,11 +2,15 @@
 
 int main(int argc, char** argv){
 
+	BluetoothServer_t server;
+	BluetoothServer_construct(&server);
+
+
 	BluetoothClient_t client;
 	BluetoothClient_construct(&client);
 	
-	BluetoothServer_t server;
-	BluetoothServer_construct(&server);
+	//BluetoothServer_t server;
+	//BluetoothServer_construct(&server);
 
 	char data;
 

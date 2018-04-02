@@ -8,6 +8,7 @@ void exitHandler(int s){
 	RUN = 0;
 }
 
+
 int main(int argc, char** argv)
 {
 
@@ -22,17 +23,19 @@ int main(int argc, char** argv)
     pi = pigpio_start(NULL, NULL);
 
     if (pi < 0) return -1;
+
    
     StepperMotor_construct(&stepper, 100);
 
+    gpio_write(pi, 4, 1);
+    
    
-    while(RUN){  
-		
+    while(RUN){
+	
 		for(uint8_t i=0; i<4; i++){
 
 			StepperMotor_update(&stepper);
 			time_sleep(0.2);
-
 		}
 	
 		StepperMotor_setDirection(&stepper, DIRECTION_ANTICLOCKWISE_);
@@ -52,6 +55,8 @@ int main(int argc, char** argv)
     printf("\ntidying up\n");
 
 	StepperMotor_disable(&stepper);
+
+	gpio_write(pi, 4, 0);
 
     pigpio_stop(pi);
 

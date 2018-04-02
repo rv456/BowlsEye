@@ -10,9 +10,8 @@
 /*!
  * Constructor for StepperMotor_t
  * @param stepper			Instance of StepperMotor_t
- * @param multiple			Multiple of minimum step angle (0.9deg), defines angular resolution of system
  */
-void StepperMotor_construct(StepperMotor_t *stepper, uint8_t multiple){
+void StepperMotor_construct(StepperMotor_t *stepper, uint16_t *userParams){
 
 	stepper->pinEnA = PIN_EN_A_;
 	stepper->pinEnB = PIN_EN_B_;
@@ -29,8 +28,8 @@ void StepperMotor_construct(StepperMotor_t *stepper, uint8_t multiple){
 	stepper->currentStep = 0;
 	stepper->waitTime = STEP_DELAY_;	
 
-	stepper->stepMultiple = multiple;
-	stepper->direction = DIRECTION_CLOCKWISE_;
+	stepper->stepMultiple = &userParams[0];
+	stepper->direction = &userParams[1];
 
 	StepperMotor_enable(stepper);
 }
@@ -40,10 +39,10 @@ void StepperMotor_construct(StepperMotor_t *stepper, uint8_t multiple){
  * @param stepper			Instance of StepperMotor_t
  */
 void StepperMotor_update(StepperMotor_t *stepper){
+	
+	if(*(stepper->direction) == DIRECTION_CLOCKWISE_){
 
-	if(stepper->direction == DIRECTION_CLOCKWISE_){
-
-		for(uint8_t i=0; i<stepper->stepMultiple; i++){
+		for(uint16_t i=0; i<*(stepper->stepMultiple); i++){
 
 			StepperMotor_incrementStep(stepper);
 			time_sleep(stepper->waitTime);
@@ -51,7 +50,7 @@ void StepperMotor_update(StepperMotor_t *stepper){
 	}
 	else{
 
-		for(uint8_t i=0; i<stepper->stepMultiple; i++){
+		for(uint16_t i=0; i<*(stepper->stepMultiple); i++){
 
 			StepperMotor_decrementStep(stepper);
 			time_sleep(stepper->waitTime);
@@ -59,6 +58,11 @@ void StepperMotor_update(StepperMotor_t *stepper){
 	}
 }
 
+
+/*
+ * ToDo: Remove this method? using pointer to received bluetooth data now instead
+ */
+ 
 /*!
  * Set the size of the motor step increment, defines the angular resolution of the system
  * @param stepper			Instance of StepperMotor_t
@@ -68,6 +72,10 @@ void StepperMotor_setStepSize(StepperMotor_t *stepper, uint8_t multiple){
 
 	stepper->stepMultiple = multiple;
 }
+
+/*
+ * ToDo: Remove this method? using pointer to received bluetooth data now instead
+ */
 
 /*!
  * Set the rotational direction of the motor
