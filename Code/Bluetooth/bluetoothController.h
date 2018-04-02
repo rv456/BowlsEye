@@ -1,3 +1,13 @@
+/*!
+ * @file bluetoothController.h
+ *
+ * 
+ * @author Harvey Leicester
+ */
+
+#ifndef BLUETOOTHCONTROLLER_H_
+#define BLUETOOTHCONTROLLER_H_
+
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/socket.h>
@@ -6,6 +16,9 @@
 
 extern char PC_ADDRESS_[18];
 
+/*!
+ * Structure for creating a Bluetooth server
+ */
 typedef struct{
 
 	struct sockaddr_rc locAddr;
@@ -16,12 +29,16 @@ typedef struct{
 	socklen_t opt;
 }BluetoothServer_t;
 
+/*!
+ * Structure for creating a Bluetooth client
+ */
 typedef struct{
 
 	struct sockaddr_rc addr;
 	int sock, status;
 	char *dst;
 }BluetoothClient_t;
+
 
 void BluetoothServer_construct(BluetoothServer_t *server);
 void BluetoothServer_enable(BluetoothServer_t *server);
@@ -36,4 +53,7 @@ void BluetoothClient_disable(BluetoothClient_t *client);
 void BluetoothClient_sendString(BluetoothClient_t *client, char *data, int size);
 void BluetoothClient_checkError(BluetoothClient_t *client);
 
+
+
+#endif /* BLUETOOTHCONTROLLER_H_ */
 

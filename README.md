@@ -5,6 +5,23 @@
 
 Repository for team 18's Real Time Embedded Programming Raspberry Pi project.
 
+## Repository Structure
+
+[Code](https://github.com/rv456/BowlsEye/tree/master/Code) contains all of the code written for the Raspberry Pi and the external GUI.  Code documentation can be found [here](https://rv456.github.io/BowlsEye/).
+
+[KiCad](https://github.com/rv456/BowlsEye/tree/master/KiCad) contains the various hardware design files used throught the project, including a full [BOM](https://github.com/rv456/BowlsEye/blob/master/KiCad/Shield/Fabrication/BOM/BOMfull.csv) and fabrication files. (note that part numbers for everything used in the project can also be found directly in the [schematics](https://github.com/rv456/BowlsEye/blob/master/KiCad/Shield) thanks to [kifields](http://kifield.readthedocs.io/en/latest/).
+
+[Planner](https://github.com/rv456/BowlsEye/tree/master/Planner) contains documents related to project planning.  These will be removed once the project is completed.
+
+[Resources](https://github.com/rv456/BowlsEye/tree/master/Resources) contains various datasheets, notes and other supporting files.
+
+-----------
+
+## Team Structure
+
+[Harvey Leicester](https://github.com/rv456): Raspberry Pi programming and hardware design.
+
+[Calum West](https://github.com/CalumWest): GUI programming and ultrasound guru.
 
 
 # Problem

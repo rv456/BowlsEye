@@ -10,6 +10,10 @@ Quick demo showing PWM functionality of rPi.  Requires pigpio library, which can
 	make
 	./pwmDemo
 
+Note that the pigpio daemon must be running with the following sample rate to allow for a stable 40kHz output:
+
+    sudo piogpiod -s 1
+
 You can also remove unused object files with
 
 	make clean

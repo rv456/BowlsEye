@@ -6,12 +6,6 @@
 #include <pigpiod_if2.h>
 
 /*
-# servo_demo_D.c
-# 2016-10-08
-# Public Domain
-
-gcc -Wall -pthread -o servo_demo_D servo_demo_D.c -lpigpiod_if2
-
 This software requires the pigpio daemon to be running.
 
 sudo pigpiod -s 1
