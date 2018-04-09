@@ -34,6 +34,7 @@ LIBS:valves
 LIBS:adc122s101
 LIBS:l298_th
 LIBS:transducer
+LIBS:Proto2-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
