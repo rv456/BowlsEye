@@ -96,9 +96,11 @@ class tooth_com(QThread):
 		self.create_client()
 
 class tooth_rcv(QThread):
+	received=pyqtSignal()
 	def __init__(self):
 		QThread.__init__(self)
 		self.rcv=list()
+		
 
 	def update(self,addr):
 		self.addr=addr
@@ -107,7 +109,7 @@ class tooth_rcv(QThread):
 		print('listening')
 		server_socket=BluetoothSocket( RFCOMM )
 		i=0
-		server_socket.bind(("", 8888 ))
+		server_socket.bind(('', 1 ))
 		server_socket.listen(1)
 
 		client_socket, addr = server_socket.accept()
@@ -115,8 +117,14 @@ class tooth_rcv(QThread):
 
 		while True:
 			data = client_socket.recv(1024)
-			self.rcv=self.rcv.append(data)
+			parse1[i]=parse1[i].rsplit('\'',1)[0]
+			parse1[i]=parse1[i].split('\\x')[0]
+			parse1[i]=parse1[i].split('b\'')[1]
+			parse1[i]=float(parse1[i])
+			print (parse1[i])
+			self.rcv.append(parse1[i])
 			print ("received {}".format(data))
+			self.received.emit()
 			#print ("rcv buffer: {}".format(self.rcv[i]))
 			i=i+1
 			

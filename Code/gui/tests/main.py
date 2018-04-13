@@ -2,7 +2,7 @@ import sys
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-from point_clicking import DataWindow
+from draw_rcv import DataWindow
 from input_layout import input_form
 from pyblu_listen import *
 
@@ -12,12 +12,15 @@ class MainWindow(QWidget):
 		self.initUI() 
 
 	def initUI(self):
-		self.sensor=DataWindow()
+		
 		self.user_in=input_form()
 		self.bluetooth=teeth_widget()
+		self.sensor=DataWindow(self.bluetooth)
 
-		self.user_in.start.clicked.connect(self.sensor.timer.start)
-		self.user_in.stop.clicked.connect(self.sensor.timer.stop)
+		#self.user_in.start.clicked.connect(self.sensor.timer.start)
+		#self.user_in.stop.clicked.connect(self.sensor.timer.stop)
+
+		#self.bluetooth.rcv_t.received.connect(self.sensor.update)
 
 		vlayout=QVBoxLayout()
 		vlayout.addWidget(self.bluetooth)
