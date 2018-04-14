@@ -30,7 +30,7 @@ int main(int argc, char** argv){
 		//rec |= recBuf[1];
 		printf("rec = %i\n", rec);
 
-		time_sleep(0.1);
+		//time_sleep(0.000001);
 
 		printf("sending chan 1\n");
 
@@ -43,6 +43,6 @@ int main(int argc, char** argv){
 
 		printf("rec %i\n", rec);
 
-		time_sleep(0.1);
+		//time_sleep(0.000001);
 	}
 }

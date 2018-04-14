@@ -45,16 +45,25 @@ int main(int argc, char** argv)
 
    setSignalHandler(SIGINT, stop);
    
-   printf("PWM out on GPIO4\nControl C to stop.\n");
+   printf("PWM out on GPIO13\nControl C to stop.\n");
    
-   set_PWM_frequency(pi, 4, 40000);
-   set_PWM_dutycycle(pi, 4, 128);
+   set_PWM_frequency(pi, 13, 40000);
+   set_PWM_dutycycle(pi, 13, 128);
    
-   while(run);  
+   while(run){
+
+	set_PWM_dutycycle(pi, 13, 0);
+
+	time_sleep(1);
+
+	set_PWM_dutycycle(pi, 13, 128);
+	set_PWM_dutycycle(pi, 13, 0);
+
+   }
 
    printf("\ntidying up\n");
 
-   gpio_write(pi, 4, 0);
+   gpio_write(pi, 13, 0);
 
    pigpio_stop(pi);
 
