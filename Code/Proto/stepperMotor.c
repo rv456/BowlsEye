@@ -6,13 +6,23 @@
  */
 
 #include "stepperMotor.h"
+#include <pthread.h>
+
+
+pthread_mutex_t usrParamLock = PTHREAD_MUTEX_INITIALIZER;
+
+void initMutexes(void){
+
+	
+
+}
 
 /*!
  * Constructor for StepperMotor_t
  * @param stepper			Instance of StepperMotor_t
  * @param multiple			Multiple of minimum step angle (0.9deg), defines angular resolution of system
  */
-void StepperMotor_construct(StepperMotor_t *stepper, uint8_t multiple){
+void StepperMotor_construct(StepperMotor_t *stepper){
 
 	stepper->pinEnA = PIN_EN_A_;
 	stepper->pinEnB = PIN_EN_B_;
@@ -37,7 +47,7 @@ void StepperMotor_construct(StepperMotor_t *stepper, uint8_t multiple){
 	stepper->totalSteps = 0;
 	stepper->waitTime = STEP_DELAY_;	
 
-	stepper->stepMultiple = multiple;
+	stepper->stepMultiple = &(USER_PARAMS_[2]);
 	stepper->direction = DIRECTION_CLOCKWISE_;
 
 	StepperMotor_enable(stepper);
@@ -51,23 +61,23 @@ void StepperMotor_update(StepperMotor_t *stepper){
 
 	if(stepper->direction == DIRECTION_CLOCKWISE_){
 
-		for(uint8_t i=0; i<stepper->stepMultiple; i++){
+		pthread_mutex_lock(&usrParamLock);
+		for(uint8_t i=0; i<*(stepper->stepMultiple); i++){
 
 			StepperMotor_incrementStep(stepper);
 			time_sleep(stepper->waitTime);
 		}
-
-		stepper->totalSteps += stepper->stepMultiple;
+		pthread_mutex_unlock(&usrParamLock);
 	}
 	else{
 
-		for(uint8_t i=0; i<stepper->stepMultiple; i++){
+		pthread_mutex_lock(&usrParamLock);
+		for(uint8_t i=0; i<*(stepper->stepMultiple); i++){
 
 			StepperMotor_decrementStep(stepper);
 			time_sleep(stepper->waitTime);
 		}
-
-		stepper->totalSteps -= stepper->stepMultiple;
+		pthread_mutex_lock(&usrParamLock);
 	}
 }
 
@@ -76,7 +86,7 @@ void StepperMotor_update(StepperMotor_t *stepper){
  * @param stepper			Instance of StepperMotor_t
  * @param multiple			Multiple of minimum step increment (0.9deg)
  */
-void StepperMotor_setStepSize(StepperMotor_t *stepper, uint8_t multiple){
+void StepperMotor_setStepSize(StepperMotor_t *stepper, int *multiple){
 
 	stepper->stepMultiple = multiple;
 }
@@ -148,7 +158,7 @@ void StepperMotor_incrementStep(StepperMotor_t *stepper){
 	stepper->step[stepper->currentStep](stepper);
 
 	stepper->currentStep++;
-
+	stepper->totalSteps++;
 	StepperMotor_wrapStep(stepper);
 }
 
@@ -160,7 +170,7 @@ void StepperMotor_decrementStep(StepperMotor_t *stepper){
 
 	stepper->step[stepper->currentStep](stepper);
 	stepper->currentStep--;
-
+	stepper->totalSteps--;
 	StepperMotor_wrapStep(stepper);
 }
 
@@ -179,24 +189,20 @@ void StepperMotor_wrapStep(StepperMotor_t *stepper){
 	}
 }
 
+
 void StepperMotor_zero(StepperMotor_t *stepper){
 
 
-	if(stepper->totalSteps > 0){
+	while(stepper->totalSteps > 0){
 
-		for(int i=0; i<stepper->totalSteps; i++){
-			StepperMotor_decrementStep(stepper);
-			time_sleep(stepper->waitTime);
-		}
+		StepperMotor_decrementStep(stepper);
+		time_sleep(stepper->waitTime);
 	}
 
-	if(stepper->totalSteps < 0){
+	while(stepper->totalSteps < 0){
 
-		for(int i=0; i<stepper->totalSteps; i++){
-			StepperMotor_incrementStep(stepper);
-			time_sleep(stepper->waitTime);
-		}
-
+		StepperMotor_incrementStep(stepper);
+		time_sleep(stepper->waitTime);
 	}
 }
 

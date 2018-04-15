@@ -12,7 +12,9 @@ void BluetoothServer_construct(BluetoothServer_t *server){
 	server->locAddr.rc_bdaddr = *BDADDR_ANY;
 	server->locAddr.rc_channel = (uint8_t)1;
 
+	printf("binding\n");
 	bind(server->sock, (struct sockaddr *)&(server->locAddr), sizeof(server->locAddr));
+	printf("bound\n");
 
 	for(int i=0; i<1024; i++){
 
@@ -38,7 +40,23 @@ void BluetoothServer_disable(BluetoothServer_t *server){
 	close(server->sock);
 }
 
-int BluetoothServer_readString(BluetoothServer_t *server){
+void BluetoothServer_readInt(BluetoothServer_t *server, uint16_t *dst){
+
+	int bytesRead = read(server->client, server->recData, sizeof(server->recData));
+
+	if(bytesRead > 0){
+
+		//for(uint16_t i=0; i<bytesRead; i++){
+
+			printf("received [%i]\t", (int)(server->recData[1]));
+		//}
+
+		//printf("\n");
+		dst[0] = (int)(server->recData[0]);
+	}
+}
+
+void BluetoothServer_readChar(BluetoothServer_t *server){
 
 	int bytesRead = read(server->client, server->recData, sizeof(server->recData));
 	if(bytesRead > 0){
@@ -48,7 +66,10 @@ int BluetoothServer_readString(BluetoothServer_t *server){
 		printf("\n");
 	}
 
-	return bytesRead;
+
+	else{
+		printf("not received anything...\n");
+	}
 }
 
 void BluetoothClient_construct(BluetoothClient_t *client){
@@ -73,15 +94,15 @@ void BluetoothClient_disable(BluetoothClient_t *client){
 	close(client->sock);
 }
 
-void BluetoothClient_sendDoubleAsStr(BluetoothClient_t *client, double data0, double data1){
-
-	sprintf(client->txData, "%f%f", data0, data1);
-   	BluetoothClient_sendString(client, client->txData, 16);
-}
-
 void BluetoothClient_sendString(BluetoothClient_t *client, char *data, int size){
 
 	client->status = write(client->sock, data, size);
+	BluetoothClient_checkError(client);
+}
+
+void BluetoothClient_sendInt(BluetoothClient_t *client, int data){
+
+	client->status = write(client->sock, &data, 2);
 	BluetoothClient_checkError(client);
 }
 
@@ -92,29 +113,7 @@ void BluetoothClient_checkError(BluetoothClient_t *client){
 	}
 }
 
-void BluetoothServer_receiveParams(BluetoothServer_t *server, int *dst, int size){
 
-	if(BluetoothServer_readString(server)){
-
-		/*convert received data from comma separated string
-		 *to the user parameters
-		 */ 
-		char *token = strtok(server->recData, ",");
-
-		//ToDo: make NO_PARMAS_ global!!
-
-
-
-		for(uint8_t i=0; i<size; i++){
-			if(token != NULL){
-			dst[i] = atoi(token);
-
-			printf("dst %i\n", dst[i]);
-			token = strtok(NULL, ",");
-			}
-		}
-	}
-}
 
 
 

@@ -13,11 +13,13 @@ FIFO_t adcDataBuffer;
 
 FIFO_t *BUFFER_[2];
 
-void globals_config(void){
+int USER_PARAMS_[4];
+
+/*void globals_config(void){
 
 
 	FIFO_construct(&adcDataBuffer, ADC_VALUE_ARRAY_, BUFFER_SIZE_);
 	FIFO_construct(&timeStampBuffer, TIME_STAMP_ARRAY_, BUFFER_SIZE_);
 	BUFFER_[ADC_VAL_INDEX_] = &adcDataBuffer;
 	BUFFER_[TIME_STAMP_INDEX_] = &timeStampBuffer;
-}
+}*/

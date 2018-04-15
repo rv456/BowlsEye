@@ -9,6 +9,7 @@
 #define STEPPERMOTOR_H_
 
 #include <pigpio.h>
+#include "globals.h"
 
 #define MAX_STEPS_					400
 #define NO_STEPS_					4
@@ -38,16 +39,17 @@ struct StepperMotor_t{
 	int8_t currentStep;
 	int totalSteps;									/*!<Current step of the motor*/
 	double waitTime;									/*!<Time to wait/delay between steps*/
-	uint8_t direction, stepMultiple; 					/*!<Rotational direction and angular resolution*/
+	uint8_t direction;	 					/*!<Rotational direction and angular resolution*/
+	int *stepMultiple;
 };
 
 StepperMotor_t stepper;
 
-void StepperMotor_construct(StepperMotor_t *stepper, uint8_t multiple);
+void StepperMotor_construct(StepperMotor_t *stepper);
 void StepperMotor_enable(StepperMotor_t *stepper);
 void StepperMotor_update(StepperMotor_t *stepper);
 void StepperMotor_setDirection(StepperMotor_t *stepper, uint8_t direction);
-void StepperMotor_setStepSize(StepperMotor_t *stepper, uint8_t multiple);
+void StepperMotor_setStepSize(StepperMotor_t *stepper, int *multiple);
 void StepperMotor_enA(StepperMotor_t *stepper);
 void StepperMotor_enB(StepperMotor_t *stepper);
 void StepperMotor_disable(StepperMotor_t *stepper);
