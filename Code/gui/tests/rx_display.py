@@ -61,8 +61,18 @@ class BowlDisplay(QFrame):
         point.setLength(d)
         angle=self.rx[i-1]
         point.setAngle(angle)
-        #draw point
+	#store smallest distance
+        if d<min_d:
+            min_d=(d,angle)
+        #draw received data points
         painter.drawPoint(point.p2())
+      
+      if self._isFinished==True:
+        painter.setPen((QColor(255,0,0))
+	point.setLength(min_d[0])
+        point.setAngle(min_d[1])
+	painter.drawPoint()
+	
 		
 
   def sizeHint(self):
@@ -118,6 +128,7 @@ class rxWindow(QWidget):
         if 'complete' in data:
             self._isFinished=True
             self.teeth.terminal.insertPlainText('Scan Finished! Click on a point on the display to show the distance!\n')
+            self.circle.flash_timer.start(100)
 #check for dropped packets
         else:
             parse=data.split('b\'')
