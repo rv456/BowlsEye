@@ -52,13 +52,13 @@ $EndDescr
 $Comp
 L CONN_01X04 J2
 U 1 1 5AA69EB0
-P 8375 2900
-F 0 "J2" H 8375 3150 50  0000 C CNN
-F 1 "CONN_01X04" V 8475 2900 50  0000 C CNN
-F 2 "Connectors_Terminal_Blocks:TerminalBlock_Altech_AK300-4_P5.00mm" H 8375 2900 50  0001 C CNN
-F 3 "" H 8375 2900 50  0001 C CNN
-F 4 "UofG" H 8375 3250 50  0001 C CNN "part#"
-	1    8375 2900
+P 8800 2900
+F 0 "J2" H 8800 3150 50  0000 C CNN
+F 1 "CONN_01X04" V 8900 2900 50  0000 C CNN
+F 2 "Connectors_Terminal_Blocks:TerminalBlock_Altech_AK300-4_P5.00mm" H 8800 2900 50  0001 C CNN
+F 3 "" H 8800 2900 50  0001 C CNN
+F 4 "UofG" H 8800 3250 50  0001 C CNN "part#"
+	1    8800 2900
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -141,13 +141,13 @@ F 3 "" H 5850 3700 50  0001 C CNN
 	1    5850 3700
 	1    0    0    -1  
 $EndComp
-Text GLabel 8075 2850 0    35   Input ~ 0
+Text GLabel 7625 2850 0    35   Input ~ 0
 PHASE_A
-Text GLabel 8075 3050 0    35   Input ~ 0
+Text GLabel 7625 3050 0    35   Input ~ 0
 PHASE_A-
-Text GLabel 8075 2950 0    35   Input ~ 0
+Text GLabel 7625 2950 0    35   Input ~ 0
 PHASE_B
-Text GLabel 8075 2750 0    35   Input ~ 0
+Text GLabel 7625 2750 0    35   Input ~ 0
 PHASE_B-
 Text GLabel 5850 2700 2    35   Input ~ 0
 PHASE_A
@@ -181,14 +181,56 @@ Text GLabel 4650 2700 0    35   Input ~ 0
 MOTOR_VS
 Text GLabel 4650 2800 0    35   Input ~ 0
 MOTOR_VSS
+$Comp
+L D D?
+U 1 1 5AD30C7C
+P 7725 2550
+F 0 "D?" H 7725 2650 50  0000 C CNN
+F 1 "1N4007" H 7725 2450 50  0000 C CNN
+F 2 "Diodes_THT:D_T-1_P10.16mm_Horizontal" H 7725 2550 50  0001 C CNN
+F 3 "" H 7725 2550 50  0001 C CNN
+	1    7725 2550
+	0    1    1    0   
+$EndComp
+$Comp
+L D D?
+U 1 1 5AD30CDD
+P 7925 2650
+F 0 "D?" H 7925 2750 50  0000 C CNN
+F 1 "1N4007" H 7925 2550 50  0000 C CNN
+F 2 "Diodes_THT:D_T-1_P10.16mm_Horizontal" H 7925 2650 50  0001 C CNN
+F 3 "" H 7925 2650 50  0001 C CNN
+	1    7925 2650
+	0    1    1    0   
+$EndComp
+$Comp
+L D D?
+U 1 1 5AD30D5B
+P 8125 2500
+F 0 "D?" H 8125 2600 50  0000 C CNN
+F 1 "1N4007" H 8125 2400 50  0000 C CNN
+F 2 "Diodes_THT:D_T-1_P10.16mm_Horizontal" H 8125 2500 50  0001 C CNN
+F 3 "" H 8125 2500 50  0001 C CNN
+	1    8125 2500
+	0    1    1    0   
+$EndComp
+$Comp
+L D D?
+U 1 1 5AD30D96
+P 8325 2575
+F 0 "D?" H 8325 2675 50  0000 C CNN
+F 1 "1N4007" H 8325 2475 50  0000 C CNN
+F 2 "Diodes_THT:D_T-1_P10.16mm_Horizontal" H 8325 2575 50  0001 C CNN
+F 3 "" H 8325 2575 50  0001 C CNN
+	1    8325 2575
+	0    1    1    0   
+$EndComp
 Wire Wire Line
-	8175 2750 8075 2750
+	7625 2850 8600 2850
 Wire Wire Line
-	8175 2850 8075 2850
+	7625 2950 8600 2950
 Wire Wire Line
-	8175 2950 8075 2950
-Wire Wire Line
-	8175 3050 8075 3050
+	7625 3050 8600 3050
 Wire Wire Line
 	5750 2700 5850 2700
 Wire Wire Line
@@ -216,13 +258,13 @@ Wire Wire Line
 Wire Wire Line
 	1000 1175 1000 1225
 Wire Wire Line
-	1000 975  1000 775 
+	1000 775  1000 975 
 Wire Wire Line
 	1000 875  1100 875 
 Wire Wire Line
 	1675 1175 1675 1225
 Wire Wire Line
-	1675 975  1675 775 
+	1675 775  1675 975 
 Wire Wire Line
 	1675 875  1775 875 
 Wire Wire Line
@@ -238,4 +280,33 @@ Wire Wire Line
 Connection ~ 1000 875 
 Connection ~ 1675 875 
 Connection ~ 5850 3600
+Connection ~ 8325 3050
+Connection ~ 8125 2950
+Connection ~ 7925 2850
+Wire Wire Line
+	7725 2300 8325 2300
+Connection ~ 7925 2300
+Wire Wire Line
+	7625 2750 8600 2750
+Connection ~ 7725 2750
+Wire Wire Line
+	7925 2500 7925 2300
+Wire Wire Line
+	7725 2200 7725 2400
+Wire Wire Line
+	8125 2300 8125 2350
+Wire Wire Line
+	8325 2300 8325 2425
+Connection ~ 8125 2300
+Connection ~ 7725 2300
+Text GLabel 7725 2200 0    35   Input ~ 0
++5V
+Wire Wire Line
+	7725 2700 7725 2750
+Wire Wire Line
+	7925 2800 7925 2850
+Wire Wire Line
+	8125 2650 8125 2950
+Wire Wire Line
+	8325 2725 8325 3050
 $EndSCHEMATC
