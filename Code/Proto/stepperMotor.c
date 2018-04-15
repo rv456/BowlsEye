@@ -48,7 +48,7 @@ void StepperMotor_construct(StepperMotor_t *stepper){
 	stepper->waitTime = STEP_DELAY_;	
 
 	stepper->stepMultiple = &(USER_PARAMS_[2]);
-	stepper->direction = DIRECTION_CLOCKWISE_;
+	stepper->direction = DIRECTION_ANTICLOCKWISE_;
 
 	StepperMotor_enable(stepper);
 }
@@ -59,7 +59,7 @@ void StepperMotor_construct(StepperMotor_t *stepper){
  */
 void StepperMotor_update(StepperMotor_t *stepper){
 
-	if(stepper->direction == DIRECTION_CLOCKWISE_){
+	if(stepper->direction == DIRECTION_ANTICLOCKWISE_){
 
 		pthread_mutex_lock(&usrParamLock);
 		for(uint8_t i=0; i<*(stepper->stepMultiple); i++){
@@ -210,7 +210,7 @@ void StepperMotor_zero(StepperMotor_t *stepper){
  * Method for performing a step
  * @param stepper			Instance of StepperMotor_t
  */
-void StepperMotor_step0(StepperMotor_t *stepper){
+void StepperMotor_step3(StepperMotor_t *stepper){
 
 	gpioWrite(stepper->pinA0, 0);
 	gpioWrite(stepper->pinA1, 1);
@@ -222,7 +222,7 @@ void StepperMotor_step0(StepperMotor_t *stepper){
  * Method for performing a step
  * @param stepper			Instance of StepperMotor_t
  */
-void StepperMotor_step1(StepperMotor_t *stepper){
+void StepperMotor_step2(StepperMotor_t *stepper){
 
 	gpioWrite(stepper->pinA0, 0);
 	gpioWrite(stepper->pinA1, 1);
@@ -234,7 +234,7 @@ void StepperMotor_step1(StepperMotor_t *stepper){
  * Method for performing a step
  * @param stepper			Instance of StepperMotor_t
  */
-void StepperMotor_step2(StepperMotor_t *stepper){
+void StepperMotor_step1(StepperMotor_t *stepper){
 
 	gpioWrite(stepper->pinA0, 1);
 	gpioWrite(stepper->pinA1, 0);
@@ -246,7 +246,7 @@ void StepperMotor_step2(StepperMotor_t *stepper){
  * Method for performing a step
  * @param stepper			Instance of StepperMotor_t
  */
-void StepperMotor_step3(StepperMotor_t *stepper){
+void StepperMotor_step0(StepperMotor_t *stepper){
 
 	gpioWrite(stepper->pinA0, 1);
 	gpioWrite(stepper->pinA1, 0);

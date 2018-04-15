@@ -14,7 +14,7 @@
 #define MAX_STEPS_					400
 #define NO_STEPS_					4
 //#define STEP_DELAY_					(double)1e-9
-#define STEP_DELAY_					0.001
+#define STEP_DELAY_					0.005
 
 
 #define DIRECTION_CLOCKWISE_		1

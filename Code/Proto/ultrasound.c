@@ -76,13 +76,15 @@ int main(int argc, char** argv){
 
 	StepperMotor_construct(&stepper);
 
-   	//pthread_create(&t_btIndicator, NULL, bluetoothStatusIndicator, NULL);
+	LED_construct(&bluetoothIndicatorLED, 4);
+
+   	pthread_create(&t_btIndicator, NULL, bluetoothStatusIndicator, &bluetoothIndicatorLED);
 
    	BluetoothServer_construct(&server);
    	BluetoothClient_construct(&client);
 
-   	//RUN_BLUETOOTH_LED_THREAD_ = 0;
-   	//pthread_join(t_btIndicator, NULL);
+   	RUN_BLUETOOTH_LED_THREAD_ = 0;
+   	pthread_join(t_btIndicator, NULL);
 
 	printf("bluetooth all good\n");
 
@@ -110,7 +112,7 @@ int main(int argc, char** argv){
 
 			USER_PARAMS_[0] = 0; //reset trigger
 			
-			while(stepper.totalSteps < MAX_STEPS_){
+			while(stepper.totalSteps < MAX_STEPS_/2){
 	
 				//gpioWaveTxSend(wid, PI_WAVE_MODE_ONE_SHOT);
 //				double startTime = gpioTick();
@@ -151,10 +153,11 @@ int main(int argc, char** argv){
 				}
 
 				BluetoothClient_sendDoubleAsStr(&client, distance, stepper.totalSteps * 0.9);
+				BluetoothClient_sendDoubleAsStr(&client, distance, (stepper.totalSteps * 0.9)+180);
 				//BluetoothClient_sendDoubleAsStr(&client, stepper.totalSteps * 0.9);
-				
-				StepperMotor_update(&stepper);
 
+				StepperMotor_update(&stepper);
+				time_sleep(0.05);
 			}//while
 
 			StepperMotor_zero(&stepper);
@@ -175,7 +178,7 @@ int main(int argc, char** argv){
 	pthread_join(t_btListener, NULL);
 	BluetoothServer_disable(&server);
 	BluetoothClient_disable(&client);
-
+	LED_low(&bluetoothIndicatorLED);
    	//gpioWrite(13, 0);
 
    	gpioTerminate();

@@ -13,7 +13,7 @@
 #include "globals.h"
 
 #define NO_STEPS_					4
-#define STEP_DELAY_					(double)1e-9
+#define STEP_DELAY_					(double)1e-6
 
 #define DIRECTION_CLOCKWISE_		1
 #define DIRECTION_ANTICLOCKWISE_	0
