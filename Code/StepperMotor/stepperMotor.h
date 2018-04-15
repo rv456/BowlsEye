@@ -28,7 +28,7 @@
 typedef struct StepperMotor_t StepperMotor_t;
 
 /*!
- * Structure for interfacing with stepper motor and its dual H bridge driver
+ * @biref Structure for interfacing with stepper motor and its dual H bridge driver
  */
 struct StepperMotor_t{
 

@@ -2,7 +2,7 @@
 import sys
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import (QWidget, QPushButton,
-    QHBoxLayout, QVBoxLayout, QApplication, QLineEdit, QFormLayout, QLabel)
+    QHBoxLayout, QVBoxLayout, QApplication, QLineEdit, QFormLayout, QLabel, QComboBox)
 from PyQt5.QtGui import QPixmap
 
 #QWidget to display the button layout for user input of parameter
@@ -23,14 +23,14 @@ class input_form(QWidget):
         label3.setText("Distance to Wait")
         label3.setAlignment(Qt.AlignLeft)
 
+        #Integer inputs for scan settings
+        in1=QComboBox()
+        in2=QComboBox()
+        in3=QComboBox()
 
+		
         logo=QLabel()
         logo.setPixmap(QPixmap("python.jpg"))
-
-        #Integer inputs for scan settings
-        in1=QLineEdit("Sample Rate")
-        in2=QLineEdit("Angular Resolution")
-        in3=QLineEdit("Distance to Wait")
 
         #adding buttons to grid layout
         form=QFormLayout()
