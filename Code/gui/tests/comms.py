@@ -75,10 +75,10 @@ class teeth_widget(QWidget):
 			try:
 				self.c_soc.connect(('34:C9:F0:84:27:0B', 1))
 				self._isConnected = True
-				#self.terminal.insertPlainText('Connected')
+				self.terminal.insertPlainText('Connected\n')
 				self.rcv_t.start()
 			except btcommon.BluetoothError as error:
-				print ("Could not connect: {}, retrying...".format(error))
+				self.terminal.insertPlainText ("Could not connect: {}, retrying...\n".format(error))
 				self.c_soc.close()
 				sleep(2)
 				self.c_soc=BluetoothSocket(RFCOMM)
@@ -142,7 +142,6 @@ class tooth_rcv(QThread):
 			if data!=old_data:
 				self.received.emit(data)
 				old_data=data
-				print('efosdfiuhzfouhag')
 			
 	def run(self):
 		self.listen()

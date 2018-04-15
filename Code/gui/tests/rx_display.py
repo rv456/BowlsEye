@@ -55,14 +55,11 @@ class BowlDisplay(QFrame):
         point=QLineF()
         point.setP1(self.centre)
         d=int(self.width()/2)*(self.rx[i])
-        print(self.rx[-2])
         point.setLength(d)
         angle=self.rx[i+1]
-
         point.setAngle(angle)
         #draw point
         painter.drawPoint(point.p2())
-        print(point.p2())
 		
 
   def sizeHint(self):
@@ -130,17 +127,14 @@ class rxWindow(QWidget):
             parse=parse[1].rsplit('\'')
             print(parse)
             if len(parse[0])>16:
-                #print('DODGY DATA PAL')
                 for i in range(0,(int(len(parse[0])/8))):
                     dodge=float(parse[0][i*(8):(i*8)+7])
-                    #print('DODGY PACKET 1={}'.format(dodge))
                     self.circle.rx.append(dodge)
     
             else:
                 self.circle.rx.append(float(parse[0][0:7]))
                 self.circle.rx.append(float(parse[0][8:15]))
         self.circle.repaint()
-        print(self.circle.rx)
 			
 
     def clear(self):
@@ -151,7 +145,6 @@ class rxWindow(QWidget):
         in_d=round(self.circle.y_pos,2)
         self.angle.setText('{}'.format(str(in_a)))
         self.distance.setText('{}'.format(str(in_d)))
-
 
 
 if __name__ == '__main__':
