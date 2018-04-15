@@ -63,7 +63,7 @@ class BowlDisplay(QFrame):
 		
 
   def sizeHint(self):
-      return QSize(401, 401)
+      return QSize(300, 300)
 
   def HeightForWidth(self, width):
       return width
@@ -120,7 +120,7 @@ class rxWindow(QWidget):
     def parse(self, data):
         if 'complete' in data:
             self._isFinished=True
-            print('Scan Finished')
+            self.teeth.terminal.insertPlainText('Scan Finished! Click on a point on the display to determine the distance!\n')
 #check for dropped packets
         else:
             parse=data.split('b\'')

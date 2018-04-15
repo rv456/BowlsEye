@@ -3,7 +3,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from rx_display import rxWindow
-from comms import *
+from comm import *
 
 class MainWindow(QWidget):
 	def __init__(self, parent=None,):
@@ -31,8 +31,6 @@ class MainWindow(QWidget):
 
 		self.setLayout(layout)
 
-	def update(self):
-		self.sensor.update()
 
 if __name__ == '__main__':
 
