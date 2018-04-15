@@ -19,8 +19,8 @@ class teeth_widget(QWidget):
 		scan_b=QPushButton('Device Search',self)
 		self.devices=QComboBox(self)
 		con=QPushButton('Connect',self)
-		self.listen=QPushButton('Start Scan',self)
-		n_listen=QPushButton('Save Scan',self)
+		self.scan=QPushButton('Start Scan',self)
+		save=QPushButton('Save Scan',self)
 		self.terminal=QTextEdit()
 		self.terminal.setReadOnly(True)
 
@@ -28,16 +28,17 @@ class teeth_widget(QWidget):
 		#####################Create instances of communication threads
 		self.scan_t=tooth_scan(self.terminal)
 		self.rcv_t=tooth_rcv(self.terminal)
-		self.con_t=tooth_com(self.terminal)
+		self.com_t=tooth_com(self.terminal)
 		
 
 		######################Connect signals to slots
 		self.devices.currentIndexChanged.connect(self.con_update)
 		scan_b.clicked.connect(self.scan_t.start)
 		self.scan_t.finished.connect(self.scan_update)
-		con.clicked.connect(self.con_t.run)
-		self.listen.clicked.connect(self.start_signal)
-		n_listen.clicked.connect(self.save_rx)
+		con.clicked.connect(self.com_t.run)
+		self.scan.clicked.connect(self.start_signal)
+		save.clicked.connect(self.save_rx)
+		self.com_t.connected.connect(self.rcv_t.start)
 
 
 		#########################Define widget layout
@@ -45,21 +46,19 @@ class teeth_widget(QWidget):
 		layout.addWidget(scan_b,1,0,1,2)
 		layout.addWidget(self.devices,2,0)
 		layout.addWidget(con,2,1)
-		layout.addWidget(self.listen,3,0)
-		layout.addWidget(n_listen,3,1)
+		layout.addWidget(self.scan,3,0)
+		layout.addWidget(save,3,1)
 		layout.addWidget(self.u_in,4,0,1,2)
 		layout.addWidget(self.terminal,5,0,4,2)
 		
 
 	def scan_update(self):
 		for name, addr in self.scan_t.nearby_devices:
-				print (" {} - {}".format(addr, name))
 				self.devices.addItem("{} - {}".format(addr, name))
 
 	def con_update(self):
-		device=self.scan_t.nearby_devices[self.devices.currentIndex()]
+		device=self.scan_t.nearby_devices[self.devices.currentIndex()][0]
 		self.com_t.update(device)
-		self.rcv_t.update(device)
 
 	def save_rx(self):
 		file = open('rx_data.txt','w')
@@ -68,14 +67,14 @@ class teeth_widget(QWidget):
 		
 
 	def start_signal(self):
-		if self.con_t._isConnected!=True:
+		if self.com_t._isConnected!=True:
 			self.terminal.insertPlainText('Please connect to the Pi before sending the start signal!\n')
 		else:
 			#clear received data buffer
 			self.terminal.insertPlainText('Beginning scan process...\n')
 			#write scan settings to string and transmit
 			out_buf='1,{},{},{}'.format(self.u_in.sr.currentText(),self.u_in.a_res.currentIndex()+1,self.u_in.max_d.currentText())
-			self.con_t.c_soc.send(out_buf)
+			self.com_t.c_soc.send(out_buf)
 			#Begin thread for listening to received data
 		
 
@@ -90,9 +89,9 @@ class tooth_scan(QThread):
 	
 	def blu_scan(self):
 		self.nearby_devices=list()
-		self.terminal.insertPlainText('Performing device search...\n')
+	#	self.terminal.insertPlainText('Performing device search...\n')
 		self.nearby_devices=discover_devices(lookup_names=True)
-		self.terminal.insertPlainText('Found {} devices!\n'.format(len(self.nearby_devices)))
+		#self.terminal.insertPlainText('Found {} devices!\n'.format(len(self.nearby_devices)))
 
 
 	def run(self):
@@ -100,13 +99,15 @@ class tooth_scan(QThread):
 
 #Thread for creating client socket to RPi
 class tooth_com(QThread):
+	connected=pyqtSignal()
 	def __init__(self,terminal):
 			QThread.__init__(self,terminal)
 			self._isConnected=0
 			self.terminal=terminal
+			self.device='34:C9:F0:84:27:0B'
 
 	def update(self,device):
-		self.device=device
+		self.device='34:C9:F0:84:27:0B'
 
 	def connect_client(self):
 		if self.device==None:
@@ -114,19 +115,20 @@ class tooth_com(QThread):
 		else:
 			self._isConnected=0
 			self.c_soc=BluetoothSocket(RFCOMM)
-			self.terminal.insertPlainText('Connecting to {}...\n'.format(self.device[1]))
+			self.terminal.insertPlainText('Connecting to {}...\n'.format(self.device))
 			i=0	
 			while (not self._isConnected) and i<10:
 				try:
-					self.c_soc.connect((self.deviceaddr, 1))
+					self.c_soc.connect((self.device, 1))
 					self._isConnected = True
 					self.terminal.insertPlainText('Connected!\n')
-					self.rcv_t.start()
+					self.connected.emit()
 				except btcommon.BluetoothError as error:
 					self.terminal.insertPlainText ("Could not connect: retrying...\n".format(error))
 					i=i+1
 					self.c_soc.close()
 					self.c_soc=BluetoothSocket(RFCOMM)
+					sleep(1)
 			if i==10:
 				self.terminal.insertPlainText("Failed after 10 attempts, retry if you want!\n")
 
@@ -149,13 +151,12 @@ class tooth_rcv(QThread):
 		server_socket.listen(1)
 
 		client_socket, addr = server_socket.accept()
-		self.terminal.insertPlainText('Recieving data...\n')
+		self.terminal.insertPlainText('Receiving data...\n')
 		
 		old_data=None
 		while True:
 			data=None
 			data = client_socket.recv(1024)
-			print(data)
 			data=str(data)
 			if data!=old_data:
 				self.received.emit(data)

@@ -47,16 +47,19 @@ class BowlDisplay(QFrame):
       line.setLength(int(self.width()/2))
       line.setAngle(0)
       if len(self.rx)!=0:
-         line.setAngle(self.rx[-1])          
-      painter.drawLine(line)
+         ang1=self.rx[-1]
+         line.setAngle(ang1)          
+         painter.drawLine(line)
+         line.setAngle(ang1+180)
+         painter.drawLine(line)
 
-      for i in range(0,len(self.rx)):
+      for i in range(2,len(self.rx)):
         #calculate x,y coordinate based on input angle/distance
         point=QLineF()
         point.setP1(self.centre)
-        d=int(self.width()/2)*(self.rx[i])
+        d=int(self.width()/2)*(self.rx[i-2])
         point.setLength(d)
-        angle=self.rx[i+1]
+        angle=self.rx[i-1]
         point.setAngle(angle)
         #draw point
         painter.drawPoint(point.p2())
@@ -69,7 +72,6 @@ class BowlDisplay(QFrame):
       return width
 
   def mouseReleaseEvent(self, QMouseEvent):
-      print('(', QMouseEvent.x(), ', ', QMouseEvent.y(), ')')
       p2=QPoint(QMouseEvent.x(),QMouseEvent.y())
       point=QLineF()
       point.setP1(self.centre)
@@ -110,22 +112,16 @@ class rxWindow(QWidget):
 
         self.setLayout(layout)
 
-	
-    def update(self):
-        nu_rx=(self.teeth.rx[-2],self.teeth.rx[-1])
-        self.circle.rx.append(nu_rx)
-        
 
     @pyqtSlot(str)
     def parse(self, data):
         if 'complete' in data:
             self._isFinished=True
-            self.teeth.terminal.insertPlainText('Scan Finished! Click on a point on the display to determine the distance!\n')
+            self.teeth.terminal.insertPlainText('Scan Finished! Click on a point on the display to show the distance!\n')
 #check for dropped packets
         else:
             parse=data.split('b\'')
             parse=parse[1].rsplit('\'')
-            print(parse)
             if len(parse[0])>16:
                 for i in range(0,(int(len(parse[0])/8))):
                     dodge=float(parse[0][i*(8):(i*8)+7])

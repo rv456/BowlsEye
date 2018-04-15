@@ -17,7 +17,7 @@ class MainWindow(QWidget):
 		self.sensor=rxWindow(self.bluetooth)
 
 		self.bluetooth.rcv_t.received.connect(self.sensor.parse)
-		#self.bluetooth.listen.clicked.connect(self.sensor.clear)
+		self.bluetooth.scan.clicked.connect(self.sensor.clear)
 
 		vlayout=QVBoxLayout()
 		vlayout.addWidget(self.bluetooth)

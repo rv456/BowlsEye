@@ -281,11 +281,11 @@ Connection ~ 1000 875
 Connection ~ 1675 875 
 Connection ~ 5850 3600
 Wire Wire Line
-	7925 2850 7925 2800
+	7925 2800 7925 3250
 Wire Wire Line
-	8125 2650 8125 2950
+	8125 2650 8125 3100
 Wire Wire Line
-	8325 2725 8325 3050
+	8325 2725 8325 3175
 Connection ~ 8325 3050
 Connection ~ 8125 2950
 Connection ~ 7925 2850
@@ -293,7 +293,7 @@ Wire Wire Line
 	7725 2300 8325 2300
 Connection ~ 7925 2300
 Wire Wire Line
-	7725 2700 7725 2750
+	7725 2700 7725 3150
 Wire Wire Line
 	7625 2750 8600 2750
 Connection ~ 7725 2750
@@ -309,4 +309,74 @@ Connection ~ 8125 2300
 Connection ~ 7725 2300
 Text GLabel 7725 2200 0    35   Input ~ 0
 +5V
+$Comp
+L D D?
+U 1 1 5AD318C8
+P 7725 3300
+F 0 "D?" H 7725 3400 50  0000 C CNN
+F 1 "D" H 7725 3200 50  0000 C CNN
+F 2 "Diodes_THT:D_T-1_P10.16mm_Horizontal" H 7725 3300 50  0001 C CNN
+F 3 "" H 7725 3300 50  0001 C CNN
+	1    7725 3300
+	0    1    1    0   
+$EndComp
+$Comp
+L D D?
+U 1 1 5AD318CE
+P 7925 3400
+F 0 "D?" H 7925 3500 50  0000 C CNN
+F 1 "D" H 7925 3300 50  0000 C CNN
+F 2 "Diodes_THT:D_T-1_P10.16mm_Horizontal" H 7925 3400 50  0001 C CNN
+F 3 "" H 7925 3400 50  0001 C CNN
+	1    7925 3400
+	0    1    1    0   
+$EndComp
+$Comp
+L D D?
+U 1 1 5AD318D4
+P 8125 3250
+F 0 "D?" H 8125 3350 50  0000 C CNN
+F 1 "D" H 8125 3150 50  0000 C CNN
+F 2 "Diodes_THT:D_T-1_P10.16mm_Horizontal" H 8125 3250 50  0001 C CNN
+F 3 "" H 8125 3250 50  0001 C CNN
+	1    8125 3250
+	0    1    1    0   
+$EndComp
+$Comp
+L D D?
+U 1 1 5AD318DA
+P 8325 3325
+F 0 "D?" H 8325 3425 50  0000 C CNN
+F 1 "D" H 8325 3225 50  0000 C CNN
+F 2 "Diodes_THT:D_T-1_P10.16mm_Horizontal" H 8325 3325 50  0001 C CNN
+F 3 "" H 8325 3325 50  0001 C CNN
+	1    8325 3325
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7725 3450 7725 3650
+Wire Wire Line
+	7725 3650 8325 3650
+Wire Wire Line
+	8325 3650 8325 3475
+Wire Wire Line
+	8125 3400 8125 3650
+Connection ~ 8125 3650
+Wire Wire Line
+	7925 3550 7925 3650
+Connection ~ 7925 3650
+Wire Wire Line
+	8025 3650 8025 3700
+Connection ~ 8025 3650
+$Comp
+L GNDD #PWR?
+U 1 1 5AD31B41
+P 8025 3700
+F 0 "#PWR?" H 8025 3450 50  0001 C CNN
+F 1 "GNDD" H 8025 3575 50  0000 C CNN
+F 2 "" H 8025 3700 50  0001 C CNN
+F 3 "" H 8025 3700 50  0001 C CNN
+	1    8025 3700
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
