@@ -10,7 +10,7 @@ void ADCController_constructBuffers(void){
 	}
 
 	ADC_TX0_BUFFER_[MAX_BYTE_BUFFER_SIZE_ - 2] = 0x08;
-	ADC_TX1_BUFFER_[MAX_BYTE_BUFFER_SIZE_ - 2] = 0x00;
+	ADC_TX1_BUFFER_[MAX_BYTE_BUFFER_SIZE_ - 2] = 0x00; 
 }
 
 int ADCController_construct(ADCController_t *adcCont, int spiHandle, int userParam){
@@ -36,4 +36,17 @@ void ADCController_update(ADCController_t *adcCont){
 	adcCont->channel = 1-adcCont->channel;
 }
 
+void ADCController_convertToInt(ADCController_t *adcCont, int *dst){
 
+	int temp = 0; 
+	int index = 0;
+
+	for(int i=0; i<*(adcCont->userMaxDistance); i+=2){
+
+		temp |= (((adcCont->rxBuf[i] & 0x0F) << 8) | adcCont->rxBuf[i+1]);
+
+		dst[index] = temp;
+		index++;
+
+	}		
+}

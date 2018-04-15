@@ -40,12 +40,16 @@ int main(int argc, char** argv){
    	setSignalHandler(SIGINT, stop);
 
 
-   	//SPI setup
+	int TEMP_ADC_BUFFER_SIZE_ = MAX_BYTE_BUFFER_SIZE_;
 
-   	//int spiHandle = spiOpen(0, 16000000, 3);
-   	//if(spiHandle < 0) return -1;
+	int RAW_ADC_BUFFER_[MAX_BYTE_BUFFER_SIZE_/2] = {0};
+   	
+	//SPI setup
 
-   	//ADCController_construct(&adcController, spiHandle);
+   	int spiHandle = spiOpen(0, 16000000, 3);
+   	if(spiHandle < 0) return -1;
+
+   	ADCController_construct(&adcController, spiHandle, TEMP_ADC_BUFFER_SIZE_);
 
    	//printf("spi ok\n");
 
@@ -77,6 +81,7 @@ int main(int argc, char** argv){
    	//double sample = 0;
    	//double timeStamp = 0;
 	double distance = 0;
+	int sampleIndex = 0;
 	
 
 
@@ -95,42 +100,28 @@ int main(int argc, char** argv){
 					Transducer_excite(transducer[currentChannel]);
 	
 					//gpioWaveTxSend(wid, PI_WAVE_MODE_ONE_SHOT);
-//					double startTime = gpioTick();
-
-					/*for(int i=0; i<BUFFER_SIZE_; i++){
-						ADCController_read(&adcController);
-						FIFO_push(BUFFER_[TIME_STAMP_INDEX_], gpioTick());
-						FIFO_push(BUFFER_[ADC_VAL_INDEX_], adcController.adcVal);
-
-	      				}*/
+					//double startTime = gpioTick();
 
 
-					/*for(int i=0; i<BUFFER_SIZE_; i++){
+					ADCController_update(&adcController);
 
-						FIFO_pop(BUFFER_[ADC_VAL_INDEX_], &sample);
-						FIFO_pop(BUFFER_[TIME_STAMP_INDEX_], &timeStamp);
+					ADCController_convertToInt(&adcController, RAW_ADC_BUFFER_);
 
-						timeStamp -= startTime;
+					for(int i=0; i<MAX_BYTE_BUFFER_SIZE_/2; i++){
 
-						timeStamp = timeStamp / 1000000;
-						//printf("timestamp tick %f\n", timeStamp);
+						if(RAW_ADC_BUFFER_[i] > 86.0){
 
-						if((sample > 86.0) && (timeStamp > 0.0005)){
-
+							sampleIndex = i;
 							break;
-						}*/
-					//}
-
-					time_sleep(0.003);
-
-					printf("angle = %f\n", stepper.totalSteps * 0.9);
-
-					distance += 0.02;
-
-					if(distance > 1.0){
-
-						distance = 0;
+						}
 					}
+
+
+					//time_sleep(0.003);
+
+					//printf("angle = %f\n", stepper.totalSteps * 0.9);
+
+					distance = ((double)(sampleIndex)/(double)(1000000)) * 343.0;
 
 					BluetoothClient_sendDoubleAsStr(&client, distance, ((stepper.totalSteps * 0.9)+(currentChannel*180)));
 				//BluetoothClient_sendDoubleAsStr(&client, distance, (stepper.totalSteps * 0.9)+180);
@@ -140,7 +131,6 @@ int main(int argc, char** argv){
 
 				StepperMotor_update(&stepper);
 				time_sleep(0.05);
-
 
 			}//while
 
@@ -155,7 +145,7 @@ int main(int argc, char** argv){
 
    	printf("tidying up\n");
 
-//	spiClose(adcController.spiHandle);
+	spiClose(adcController.spiHandle);
 
    	StepperMotor_disable(&stepper);
 

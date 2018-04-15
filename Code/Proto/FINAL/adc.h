@@ -27,6 +27,8 @@ ADCController_t adcController;
 int ADCController_construct(ADCController_t *adcCont, int spiHandle, int userParam);
 void ADCController_constructBuffers(void);
 
+void ADCController_convertToInt(ADCController_t *adcCont, int *dst);
+
 int ADCController_readChan0(ADCController_t *adcCont);
 int ADCController_readChan1(ADCController_t *adcCont);
 
