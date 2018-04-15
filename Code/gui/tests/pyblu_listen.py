@@ -2,6 +2,7 @@ from bluetooth import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from time import sleep
 
 #GUI object to scan for available bluetooth devices, display on dropdown menu and then send hello world message to chosen itemn
 
@@ -9,11 +10,15 @@ class teeth_widget(QWidget):
 	def __init__(self, parent=None):
 		super(teeth_widget,self).__init__(parent)
 		self.initUI()
+		self._isConnected=0
+		self.c_soc=BluetoothSocket(RFCOMM)		
 
 	def initUI(self):
 		self.scan_t=tooth_scan()
 		self.com_t=tooth_com()
-		self.rcv_t=tooth_rcv()		
+		self.rcv_t=tooth_rcv()	
+
+		self.rcv_t.start()	
 
 		scan_b=QPushButton('Scan',self)
 		scan_b.clicked.connect(self.scan_t.start)
@@ -24,13 +29,13 @@ class teeth_widget(QWidget):
 		self.devices=QComboBox(self)
 		self.devices.currentIndexChanged.connect(self.con_update)
 		
-		con=QPushButton('Send Hello',self)
-		con.clicked.connect(self.com_t.start)
+		con=QPushButton('Connect',self)
+		con.clicked.connect(self.connect_client)
 
-		listen=QPushButton('Start Listening',self)
-		listen.clicked.connect(self.rcv_t.start)
+		listen=QPushButton('Start Scan',self)
+		listen.clicked.connect(self.start_signal)
 
-		n_listen=QPushButton('Stop Listening',self)
+		n_listen=QPushButton('Save Scan',self)
 		n_listen.clicked.connect(self.rcv_t.quit)
 		n_listen.clicked.connect(self.close_listen)
 
@@ -53,9 +58,30 @@ class teeth_widget(QWidget):
 		self.rcv_t.update(addr)
 
 	def close_listen(self):
+		self.rcv_t.rcv=list()
 		file = open('rcv_data.txt','w')
 		for i in range (0,len(self.rcv_t.rcv)):
 			file.write(self.rcv_t.rcv[i])
+
+	def connect_client(self):
+		while (not self._isConnected):
+			try:
+				self.c_soc.connect(('34:C9:F0:84:27:0B', 1))
+				self._isConnected = True
+				print('Connected')
+			except btcommon.BluetoothError as error:
+				print ("Could not connect {}, retrying...".format(error))
+				self.c_soc.close()
+				self.c_soc=BluetoothSocket(RFCOMM)
+				sleep(2)
+
+		
+
+	def start_signal(self):
+		for i in range(10):
+			print('sending')
+			data=[88,12,341,51]
+			self.c_soc.send('88,56,43,76')
 		
 
 
@@ -67,6 +93,7 @@ class tooth_scan(QThread):
 		self.nearby_devices=[['','']]
 	
 	def blu_scan(self):
+		self.nearby_devices=list()
 		print('performing enquiry')
 		self.nearby_devices=discover_devices(lookup_names=True)
 		print(self.nearby_devices)
@@ -85,15 +112,9 @@ class tooth_com(QThread):
 	def update(self,addr):
 		self.addr=addr
 
-	def create_client(self):
-		self.client_socket=BluetoothSocket(RFCOMM)
-		self.client_socket.connect((self.addr,1))
-		self.client_socket.send("Hello World")
-		print('finished')
-		self.client_socket.close()
 
 	def run(self):
-		self.create_client()
+		self.connect_client()
 
 class tooth_rcv(QThread):
 	received=pyqtSignal()
@@ -117,15 +138,14 @@ class tooth_rcv(QThread):
 
 		while True:
 			data = client_socket.recv(1024)
-			parse1[i]=parse1[i].rsplit('\'',1)[0]
-			parse1[i]=parse1[i].split('\\x')[0]
-			parse1[i]=parse1[i].split('b\'')[1]
-			parse1[i]=float(parse1[i])
-			print (parse1[i])
-			self.rcv.append(parse1[i])
-			print ("received {}".format(data))
-			self.received.emit()
-			#print ("rcv buffer: {}".format(self.rcv[i]))
+			data = str(data)
+			parse1=data.split('b\'')
+			parse1=data.split('\'')
+			parse1=float(parse1[1])
+			print ('received: {}'.format(parse1))
+			self.rcv.append(parse1)
+			if (len(self.rcv) % 2) == 0:
+				self.received.emit()
 			i=i+1
 			
 	def run(self):

@@ -12,6 +12,7 @@ class BowlDisplay(QFrame):
       super(BowlDisplay, self).__init__(parent)
       self.initUI()
       self.rx=list()
+      self._isFinished=0
 
   def initUI(self):
       self.setFrameStyle(1)
@@ -22,7 +23,7 @@ class BowlDisplay(QFrame):
       self.setLayout(layout)
       self.setSizeIncrement(1,1)
       self.ang=0
-      self.setBaseSize(300,300)
+      self.setBaseSize(200,200)
 
 
   def paintEvent(self, e):
@@ -46,19 +47,22 @@ class BowlDisplay(QFrame):
       line.setLength(int(self.width()/2))
       line.setAngle(0)
       if len(self.rx)!=0:
-         line.setAngle(self.rx[-1][1])          
+         line.setAngle(self.rx[-1])          
       painter.drawLine(line)
 
       for i in range(0,len(self.rx)):
         #calculate x,y coordinate based on input angle/distance
         point=QLineF()
         point.setP1(self.centre)
-        d=int(self.width()/2)*(self.rx[i][0]/100)
+        d=int(self.width()/2)*(self.rx[i])
+        print(self.rx[-2])
         point.setLength(d)
-        angle=self.rx[i][1]
+        angle=self.rx[i+1]
+
         point.setAngle(angle)
         #draw point
         painter.drawPoint(point.p2())
+        print(point.p2())
 		
 
   def sizeHint(self):
@@ -109,14 +113,38 @@ class rxWindow(QWidget):
 
         self.setLayout(layout)
 
-
-    def load_rx(self,rx):
-        self.circle.rx=np.loadtxt('output.txt',delimiter=',',skiprows=2)
-
+	
     def update(self):
-        nu_rx=(self.teeth.rcv_t.rx[-2],self.teeth.rcv_t.rx[-1])
+        nu_rx=(self.teeth.rx[-2],self.teeth.rx[-1])
         self.circle.rx.append(nu_rx)
+        
+
+    @pyqtSlot(str)
+    def parse(self, data):
+        if 'complete' in data:
+            self._isFinished=True
+            print('Scan Finished')
+#check for dropped packets
+        else:
+            parse=data.split('b\'')
+            parse=parse[1].rsplit('\'')
+            print(parse)
+            if len(parse[0])>16:
+                #print('DODGY DATA PAL')
+                for i in range(0,(int(len(parse[0])/8))):
+                    dodge=float(parse[0][i*(8):(i*8)+7])
+                    #print('DODGY PACKET 1={}'.format(dodge))
+                    self.circle.rx.append(dodge)
+    
+            else:
+                self.circle.rx.append(float(parse[0][0:7]))
+                self.circle.rx.append(float(parse[0][8:15]))
         self.circle.repaint()
+        print(self.circle.rx)
+			
+
+    def clear(self):
+        self.circle.rx=list()
 
     def click_pos(self):
         in_a=round(self.circle.x_pos,2)
