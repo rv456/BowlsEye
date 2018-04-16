@@ -12,8 +12,6 @@ Watch our promotional video at the link below!
 # Installation
 ----------------
 
-# Installation
-
 To install the bowls eye system on the Raspberry Pi run the following
 
     git clone https://github.com/rv456/BowlsEye.git
