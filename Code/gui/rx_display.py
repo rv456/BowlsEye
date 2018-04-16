@@ -3,7 +3,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 import numpy as np
 
-#scaleable circle widget which plots rx stored in 'output.txt' as distance from centre of circle and angle
+#Class for display of data with interactive window
 
 
 class BowlDisplay(QFrame):
@@ -24,6 +24,7 @@ class BowlDisplay(QFrame):
       self.setSizeIncrement(1,1)
       self.ang=0
       self.setBaseSize(200,200)
+      self.min=[10000,10000]
 
 
   def paintEvent(self, e):
@@ -34,10 +35,11 @@ class BowlDisplay(QFrame):
       pen=QPen(QColor(20, 20, 20), 1, Qt.SolidLine)
       pen.setWidth(2)
       painter.setPen(pen)
-
-
-      rectangle=QRect(QPoint(0,0),QSize(self.width(),self.width()))
       painter.setBrush(QColor(34, 139, 34))
+
+      #create Rect object to allow scaleable drawing
+      rectangle=QRect(QPoint(0,0),QSize(self.width(),self.width()))
+
       painter.drawEllipse(rectangle)
 
       painter.setPen(pen)
@@ -48,7 +50,7 @@ class BowlDisplay(QFrame):
       line.setAngle(0)
       if len(self.rx)!=0:
          ang1=self.rx[-1]
-         line.setAngle(ang1)          
+         line.setAngle(ang1)
          painter.drawLine(line)
          line.setAngle(ang1+180)
          painter.drawLine(line)
@@ -61,19 +63,22 @@ class BowlDisplay(QFrame):
         point.setLength(d)
         angle=self.rx[i-1]
         point.setAngle(angle)
-	#store smallest distance
-        if d<min_d:
-            min_d=(d,angle)
+
+	    #check and store if smallest distance received
+        if d<self.min[0]:
+            self.min=(d,angle)
+
         #draw received data points
         painter.drawPoint(point.p2())
-      
+
+      #once scan is finished display the closest point
       if self._isFinished==True:
-        painter.setPen((QColor(255,0,0))
-	point.setLength(min_d[0])
-        point.setAngle(min_d[1])
-	painter.drawPoint()
-	
-		
+        painter.setPen(QColor(255,0,0))
+        point.setLength(self.min[0])
+        point.setAngle(self.min[1])
+        painter.drawPoint(point.p2())
+
+
 
   def sizeHint(self):
       return QSize(300, 300)
@@ -81,6 +86,7 @@ class BowlDisplay(QFrame):
   def HeightForWidth(self, width):
       return width
 
+  #return display distance
   def mouseReleaseEvent(self, QMouseEvent):
       p2=QPoint(QMouseEvent.x(),QMouseEvent.y())
       point=QLineF()
@@ -122,27 +128,31 @@ class rxWindow(QWidget):
 
         self.setLayout(layout)
 
-
+    #slot to receive data from bluetooth communication class
     @pyqtSlot(str)
     def parse(self, data):
         if 'complete' in data:
-            self._isFinished=True
+            self.circle._isFinished=True
             self.teeth.terminal.insertPlainText('Scan Finished! Click on a point on the display to show the distance!\n')
             self.circle.flash_timer.start(100)
-#check for dropped packets
+
         else:
+            #remove extraneous string data
             parse=data.split('b\'')
             parse=parse[1].rsplit('\'')
+
+            #check for dropped packets and then pars
             if len(parse[0])>16:
                 for i in range(0,(int(len(parse[0])/8))):
                     dodge=float(parse[0][i*(8):(i*8)+7])
                     self.circle.rx.append(dodge)
-    
+
+            #if standard data packet split into distance and angle and store
             else:
                 self.circle.rx.append(float(parse[0][0:7]))
                 self.circle.rx.append(float(parse[0][8:15]))
         self.circle.repaint()
-			
+
 
     def clear(self):
         self.circle.rx=list()

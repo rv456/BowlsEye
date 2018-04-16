@@ -5,7 +5,8 @@ from PyQt5.QtWidgets import (QWidget, QPushButton,
     QHBoxLayout, QVBoxLayout, QApplication, QLineEdit, QFormLayout, QLabel, QComboBox)
 from PyQt5.QtGui import QPixmap
 
-#QWidget to display the button layout for user input of parameter
+#Unit test for widget organisation and user inputs
+
 class input_form(QWidget):
     def __init__(self):
         super().__init__()
@@ -28,7 +29,7 @@ class input_form(QWidget):
         in2=QComboBox()
         in3=QComboBox()
 
-		
+
         logo=QLabel()
         logo.setPixmap(QPixmap("python.jpg"))
 
@@ -63,4 +64,5 @@ if __name__ == '__main__':
 
     app = QApplication(sys.argv)
     window=input_form()
+    window.show()
     sys.exit(app.exec_())

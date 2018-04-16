@@ -4,7 +4,8 @@ from PyQt5.QtCore import *
 import sys, random
 
 
-#drawing circle with slider for control
+#Unit test for drawing a circle
+#paintEvent method is connected to QSlider object which controls cirlce arc
 
 class draw(QWidget):
     def __init__(self):

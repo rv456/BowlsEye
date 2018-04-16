@@ -3,7 +3,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 import numpy as np
 
-#scaleable circle widget which plots data stored in 'output.txt' as distance from centre of circle and angle
+#Unit test for plotting data stored in hard drive in [distance,angle format]
 
 
 class BowlDisplay(QFrame):

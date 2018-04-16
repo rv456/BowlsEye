@@ -1,9 +1,10 @@
-# echoserver.py 
-
+# echoserver.py
 from bluetooth import *
 
 HOST = ''          # Symbolic name
 PORT = 1     # Non-privileged port
+
+#test for receiving bluetooth data
 
 s=BluetoothSocket( RFCOMM )
 

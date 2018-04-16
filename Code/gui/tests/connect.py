@@ -17,6 +17,4 @@ def con(c):
 
 
 client_socket=BluetoothSocket(RFCOMM)
-#client_socket.connect(('34:C9:F0:84:27:0B',1))
 con(client_socket)
-

@@ -46,7 +46,7 @@ class BowlDisplay(QFrame):
       line.setLength(int(self.width()/2))
       line.setAngle(0)
       if len(self.rx)!=0:
-         line.setAngle(self.rx[-1][1])          
+         line.setAngle(self.rx[-1][1])
       painter.drawLine(line)
 
       for i in range(0,len(self.rx)):
@@ -59,7 +59,7 @@ class BowlDisplay(QFrame):
         point.setAngle(angle)
         #draw point
         painter.drawPoint(point.p2())
-		
+
 
   def sizeHint(self):
       return QSize(401, 401)
