@@ -9,6 +9,49 @@ Watch our promotional video at the link below!
 
 [![Promotional Video](http://img.youtube.com/vi/sJp9lf-OOYo&/0.jpg)](http://www.youtube.com/watch?v=sJp9lf-OOYo&)
 
+# Installation
+----------------
+
+# Installation
+
+To install the bowls eye system on the Raspberry Pi run the following
+
+    git clone https://github.com/rv456/BowlsEye.git
+    cd BowlsEye/Code/Pi_BowlsEyeMain/
+    make
+    ./main
+    
+## Dependancies
+
+The BowlsEye system requies Bluez and pigpio libraries.  It also requires that SPI and bluethooth are enabled on the Raspberry Pi
+
+
+### Bluetooth 
+    sudo apt-get install bluetooth blueman bluez libbluetooth-dev
+
+### PIGPIO
+
+
+    rm pigpio.tar
+    sudo rm -rf PIGPIO
+    wget abyz.me.uk/rpi/pigpio/pigpio.tar
+    tar xf pigpio.tar
+    cd PIGPIO
+    make
+    sudo make install
+    
+from the installation instructions [here](http://abyz.me.uk/rpi/pigpio/download.html)
+
+### SPI
+
+    sudo raspi-config
+
+navigate to SPI and enable, you will then need to reboot the Pi to enable the changes
+
+    sudo reboot
+
+---------------------
+
 ## Repository Structure
 
 [Code](https://github.com/rv456/BowlsEye/tree/master/Code) contains all of the code written for the Raspberry Pi and the external GUI.  Code documentation can be found [here](https://rv456.github.io/BowlsEye/).
