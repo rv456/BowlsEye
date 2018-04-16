@@ -1,0 +1,54 @@
+.TH "BluetoothClient_t" 3 "Mon Apr 16 2018" "Version 1.0" "Bowls Eye" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+BluetoothClient_t \- Structure for implementing a Bluetooth client\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <bluetoothController\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "struct sockaddr_rc \fBaddr\fP"
+.br
+.ti -1c
+.RI "int \fBstatus\fP"
+.br
+.ti -1c
+.RI "char * \fBdst\fP"
+.br
+.ti -1c
+.RI "char \fBtxData\fP [16]"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Structure for implementing a Bluetooth client\&. 
+.PP
+Definition at line 26 of file bluetoothController\&.h\&.
+.SH "Field Documentation"
+.PP 
+.SS "struct sockaddr_rc BluetoothClient_t::addr"
+socket info 
+.PP
+Definition at line 28 of file bluetoothController\&.h\&.
+.SS "char* BluetoothClient_t::dst"
+server bluetooth address 
+.PP
+Definition at line 30 of file bluetoothController\&.h\&.
+.SS "int BluetoothClient_t::status"
+socket and status for error checking 
+.PP
+Definition at line 29 of file bluetoothController\&.h\&.
+.SS "char BluetoothClient_t::txData[16]"
+buffer of data to send 
+.PP
+Definition at line 31 of file bluetoothController\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bowls Eye from the source code\&.

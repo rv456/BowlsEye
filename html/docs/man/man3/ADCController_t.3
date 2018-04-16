@@ -1,0 +1,70 @@
+.TH "ADCController_t" 3 "Mon Apr 16 2018" "Version 1.0" "Bowls Eye" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ADCController_t \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <adc\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "int \fBspiHandle\fP"
+.br
+.ti -1c
+.RI "char * \fBtxBuf\fP [2]"
+.br
+.ti -1c
+.RI "char * \fBrxBuf\fP"
+.br
+.ti -1c
+.RI "int * \fBuserMaxDistance\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBchannel\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Structure for interfacing with ADC 
+.PP
+Definition at line 28 of file adc\&.h\&.
+.SH "Field Documentation"
+.PP 
+.SS "uint8_t ADCController_t::channel"
+ADC channel 
+.PP
+Definition at line 34 of file adc\&.h\&.
+.PP
+Referenced by ADCController_construct(), and ADCController_update()\&.
+.SS "char* ADCController_t::rxBuf"
+Receiving buffer 
+.PP
+Definition at line 32 of file adc\&.h\&.
+.PP
+Referenced by ADCController_construct(), ADCController_convertToInt(), and ADCController_update()\&.
+.SS "int ADCController_t::spiHandle"
+Handle containing SPI configuration 
+.PP
+Definition at line 30 of file adc\&.h\&.
+.PP
+Referenced by ADCController_construct(), and ADCController_update()\&.
+.SS "char* ADCController_t::txBuf[2]"
+Transmitting buffers 
+.PP
+Definition at line 31 of file adc\&.h\&.
+.PP
+Referenced by ADCController_construct(), and ADCController_update()\&.
+.SS "int* ADCController_t::userMaxDistance"
+User parameter frim GUI 
+.PP
+Definition at line 33 of file adc\&.h\&.
+.PP
+Referenced by ADCController_construct(), ADCController_convertToInt(), and ADCController_update()\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bowls Eye from the source code\&.

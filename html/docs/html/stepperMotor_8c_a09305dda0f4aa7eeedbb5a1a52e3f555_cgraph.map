@@ -1,0 +1,4 @@
+<map id="StepperMotor_wrapStep" name="StepperMotor_wrapStep">
+<area shape="rect" id="node2" href="$stepperMotor_8c.html#a31c0133f5dc870d6a98514182f3c4569" title="StepperMotor_decrementStep" alt="" coords="216,5,411,32"/>
+<area shape="rect" id="node3" href="$stepperMotor_8c.html#a8727315fcbb4e993639dde7633cc9e76" title="StepperMotor_incrementStep" alt="" coords="218,56,409,83"/>
+</map>

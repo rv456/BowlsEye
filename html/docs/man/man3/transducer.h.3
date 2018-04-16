@@ -1,0 +1,93 @@
+.TH "transducer.h" 3 "Mon Apr 16 2018" "Version 1.0" "Bowls Eye" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+transducer.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <pigpio\&.h>\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBTransducer_t\fP"
+.br
+.RI "\fIStructure for exciting the transducers\&. \fP"
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBTransducer_construct\fP (\fBTransducer_t\fP *transducer, int pin, int onTime, int offTime)"
+.br
+.ti -1c
+.RI "void \fBTransducer_excite\fP (\fBTransducer_t\fP *transducer)"
+.br
+.ti -1c
+.RI "void \fBTransducer_disable\fP (\fBTransducer_t\fP *transducer)"
+.br
+.ti -1c
+.RI "void \fBTransducer_config\fP (void)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void Transducer_config (void)"
+Configure the global \fBTransducer_t\fP's 
+.PP
+Definition at line 56 of file transducer\&.c\&.
+.PP
+References Transducer_construct()\&.
+.SS "void Transducer_construct (\fBTransducer_t\fP * transducer, int pin, int onTime, int offTime)"
+Constructor for \fBTransducer_t\fP 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItransducer\fP Instance of \fBTransducer_t\fP 
+.br
+\fIpin\fP Pin to enable excitation signal 
+.br
+\fIonTime\fP On duration of pulse 
+.br
+\fIoffTime\fP Off duration of pulse 
+.RE
+.PP
+
+.PP
+Definition at line 14 of file transducer\&.c\&.
+.PP
+References Transducer_t::pin, Transducer_t::pulseInfo, and Transducer_t::wid\&.
+.PP
+Referenced by Transducer_config()\&.
+.SS "void Transducer_disable (\fBTransducer_t\fP * transducer)"
+Disable a transducer 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItransducer\fP Instance of \fBTransducer_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 48 of file transducer\&.c\&.
+.PP
+References Transducer_t::pin\&.
+.SS "void Transducer_excite (\fBTransducer_t\fP * transducer)"
+Excite a transducer 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItransducer\fP Instance of \fBTransducer_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 39 of file transducer\&.c\&.
+.PP
+References Transducer_t::wid\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bowls Eye from the source code\&.

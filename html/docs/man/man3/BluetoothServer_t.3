@@ -1,0 +1,68 @@
+.TH "BluetoothServer_t" 3 "Mon Apr 16 2018" "Version 1.0" "Bowls Eye" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+BluetoothServer_t \- Structure for implementing a Bluetooth server\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <bluetoothController\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "struct sockaddr_rc \fBlocAddr\fP"
+.br
+.ti -1c
+.RI "struct sockaddr_rc \fBremAddr\fP"
+.br
+.ti -1c
+.RI "char \fBbuf\fP [1024]"
+.br
+.ti -1c
+.RI "int \fBclient\fP"
+.br
+.ti -1c
+.RI "char \fBrecData\fP [1024]"
+.br
+.ti -1c
+.RI "socklen_t \fBopt\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Structure for implementing a Bluetooth server\&. 
+.PP
+Definition at line 13 of file bluetoothController\&.h\&.
+.SH "Field Documentation"
+.PP 
+.SS "char BluetoothServer_t::buf[1024]"
+buffer for storing bluetooth address 
+.PP
+Definition at line 17 of file bluetoothController\&.h\&.
+.SS "int BluetoothServer_t::client"
+socket and client 
+.PP
+Definition at line 18 of file bluetoothController\&.h\&.
+.SS "struct sockaddr_rc BluetoothServer_t::locAddr"
+local address 
+.PP
+Definition at line 15 of file bluetoothController\&.h\&.
+.SS "socklen_t BluetoothServer_t::opt"
+socket info 
+.PP
+Definition at line 20 of file bluetoothController\&.h\&.
+.SS "char BluetoothServer_t::recData[1024]"
+received data buffer 
+.PP
+Definition at line 19 of file bluetoothController\&.h\&.
+.SS "struct sockaddr_rc BluetoothServer_t::remAddr"
+remote address 
+.PP
+Definition at line 16 of file bluetoothController\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bowls Eye from the source code\&.

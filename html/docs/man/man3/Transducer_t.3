@@ -1,0 +1,53 @@
+.TH "Transducer_t" 3 "Mon Apr 16 2018" "Version 1.0" "Bowls Eye" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Transducer_t \- Structure for exciting the transducers\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <transducer\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "gpioPulse_t \fBpulseInfo\fP [NO_PULSES_]"
+.br
+.ti -1c
+.RI "int \fBpin\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBwid\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Structure for exciting the transducers\&. 
+.PP
+Definition at line 16 of file transducer\&.h\&.
+.SH "Field Documentation"
+.PP 
+.SS "int Transducer_t::pin"
+Excitation pin 
+.PP
+Definition at line 19 of file transducer\&.h\&.
+.PP
+Referenced by Transducer_construct(), and Transducer_disable()\&.
+.SS "gpioPulse_t Transducer_t::pulseInfo[NO_PULSES_]"
+Pulse information 
+.PP
+Definition at line 18 of file transducer\&.h\&.
+.PP
+Referenced by Transducer_construct()\&.
+.SS "uint32_t Transducer_t::wid"
+Wave identifier 
+.PP
+Definition at line 20 of file transducer\&.h\&.
+.PP
+Referenced by Transducer_construct(), and Transducer_excite()\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bowls Eye from the source code\&.

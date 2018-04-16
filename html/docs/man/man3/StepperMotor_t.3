@@ -1,0 +1,70 @@
+.TH "StepperMotor_t" 3 "Mon Apr 16 2018" "Version 1.0" "Bowls Eye" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+StepperMotor_t \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <stepperMotor\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "uint8_t \fBpinEnA\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBpinB1\fP"
+.br
+.ti -1c
+.RI "int \fBtotalSteps\fP"
+.br
+.ti -1c
+.RI "double \fBwaitTime\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBdirection\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Structure for interfacing with stepper motor and its dual H bridge driver 
+.PP
+Definition at line 34 of file stepperMotor\&.h\&.
+.SH "Field Documentation"
+.PP 
+.SS "uint8_t StepperMotor_t::direction"
+Rotational direction and angular resolution 
+.PP
+Definition at line 41 of file stepperMotor\&.h\&.
+.PP
+Referenced by StepperMotor_construct(), StepperMotor_setDirection(), and StepperMotor_update()\&.
+.SS "uint8_t StepperMotor_t::pinB1"
+The pins used to enable the coils of the motor 
+.PP
+Definition at line 37 of file stepperMotor\&.h\&.
+.PP
+Referenced by StepperMotor_construct(), StepperMotor_disable(), StepperMotor_enable(), StepperMotor_step0(), StepperMotor_step1(), StepperMotor_step2(), and StepperMotor_step3()\&.
+.SS "uint8_t StepperMotor_t::pinEnA"
+Contains the methods for performing each step< 
+.PP
+Definition at line 37 of file stepperMotor\&.h\&.
+.PP
+Referenced by StepperMotor_construct(), StepperMotor_disable(), StepperMotor_enA(), and StepperMotor_enable()\&.
+.SS "int StepperMotor_t::totalSteps"
+Current step of the motor 
+.PP
+Definition at line 39 of file stepperMotor\&.h\&.
+.PP
+Referenced by StepperMotor_construct(), StepperMotor_decrementStep(), StepperMotor_incrementStep(), and StepperMotor_wrapStep()\&.
+.SS "double StepperMotor_t::waitTime"
+Time to wait/delay between steps 
+.PP
+Definition at line 40 of file stepperMotor\&.h\&.
+.PP
+Referenced by StepperMotor_construct(), StepperMotor_update(), and StepperMotor_wrapStep()\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bowls Eye from the source code\&.

@@ -1,0 +1,204 @@
+.TH "bluetoothController.c" 3 "Sun Mar 25 2018" "Version 1.0" "Bowls Eye" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+bluetoothController.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'bluetoothController\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBBluetoothServer_construct\fP (\fBBluetoothServer_t\fP *server)"
+.br
+.ti -1c
+.RI "void \fBBluetoothServer_enable\fP (\fBBluetoothServer_t\fP *server)"
+.br
+.ti -1c
+.RI "void \fBBluetoothServer_disable\fP (\fBBluetoothServer_t\fP *server)"
+.br
+.ti -1c
+.RI "void \fBBluetoothServer_readInt\fP (\fBBluetoothServer_t\fP *server, int *dst)"
+.br
+.ti -1c
+.RI "void \fBBluetoothServer_readChar\fP (\fBBluetoothServer_t\fP *server, char *dst)"
+.br
+.ti -1c
+.RI "void \fBBluetoothClient_construct\fP (\fBBluetoothClient_t\fP *client)"
+.br
+.ti -1c
+.RI "void \fBBluetoothClient_enable\fP (\fBBluetoothClient_t\fP *client)"
+.br
+.ti -1c
+.RI "void \fBBluetoothClient_disable\fP (\fBBluetoothClient_t\fP *client)"
+.br
+.ti -1c
+.RI "void \fBBluetoothClient_sendString\fP (\fBBluetoothClient_t\fP *client, char *data, int size)"
+.br
+.ti -1c
+.RI "void \fBBluetoothClient_checkError\fP (\fBBluetoothClient_t\fP *client)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Harvey Leicester 
+.RE
+.PP
+
+.PP
+Definition in file \fBbluetoothController\&.c\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "void BluetoothClient_checkError (\fBBluetoothClient_t\fP * client)"
+Check for errors in status of Bluetooth client 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIclient\fP Instance of \fBBluetoothClient_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 147 of file bluetoothController\&.c\&.
+.PP
+References BluetoothClient_t::status\&.
+.PP
+Referenced by BluetoothClient_enable(), and BluetoothClient_sendString()\&.
+.SS "void BluetoothClient_construct (\fBBluetoothClient_t\fP * client)"
+constructor for \fBBluetoothClient_t\fP 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIclient\fP Instance of \fBBluetoothClient_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 100 of file bluetoothController\&.c\&.
+.PP
+References BluetoothClient_t::addr, BluetoothClient_enable(), and BluetoothClient_t::dst\&.
+.SS "void BluetoothClient_disable (\fBBluetoothClient_t\fP * client)"
+Disables a Bluetooth client 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIclient\fP Instance of \fBBluetoothClient_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 126 of file bluetoothController\&.c\&.
+.SS "void BluetoothClient_enable (\fBBluetoothClient_t\fP * client)"
+Enables a Bluetooth client 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIclient\fP Instance of \fBBluetoothClient_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 116 of file bluetoothController\&.c\&.
+.PP
+References BluetoothClient_t::addr, BluetoothClient_checkError(), and BluetoothClient_t::status\&.
+.PP
+Referenced by BluetoothClient_construct()\&.
+.SS "void BluetoothClient_sendString (\fBBluetoothClient_t\fP * client, char * data, int size)"
+Send a string of data to connected Bluetooth server 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIclient\fP Instance of bluetoothClient_t 
+.br
+\fIdata\fP Data to send 
+.br
+\fIsize\fP Size of data to send 
+.RE
+.PP
+
+.PP
+Definition at line 137 of file bluetoothController\&.c\&.
+.PP
+References BluetoothClient_checkError(), and BluetoothClient_t::status\&.
+.SS "void BluetoothServer_construct (\fBBluetoothServer_t\fP * server)"
+Constructor for \fBBluetoothServer_t\fP 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIserver\fP Instance of \fBBluetoothServer_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 16 of file bluetoothController\&.c\&.
+.PP
+References BluetoothServer_enable(), BluetoothServer_t::locAddr, BluetoothServer_t::opt, BluetoothServer_t::recData, and BluetoothServer_t::remAddr\&.
+.SS "void BluetoothServer_disable (\fBBluetoothServer_t\fP * server)"
+Disables Bluetooth server 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIserver\fP Instance of \fBBluetoothServer_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 53 of file bluetoothController\&.c\&.
+.PP
+References BluetoothServer_t::client\&.
+.SS "void BluetoothServer_enable (\fBBluetoothServer_t\fP * server)"
+Enablea the Bluetooth server 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIserver\fP Instance of \fBBluetoothServer_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 39 of file bluetoothController\&.c\&.
+.PP
+References BluetoothServer_t::buf, BluetoothServer_t::client, BluetoothServer_t::opt, and BluetoothServer_t::remAddr\&.
+.PP
+Referenced by BluetoothServer_construct()\&.
+.SS "void BluetoothServer_readChar (\fBBluetoothServer_t\fP * server, char * dst)"
+Read character value(s) from a connected Bluetooth client 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIserver\fP Instance of \fBBluetoothServer_t\fP 
+.br
+\fIdst\fP Destination of received data 
+.RE
+.PP
+
+.PP
+Definition at line 84 of file bluetoothController\&.c\&.
+.PP
+References BluetoothServer_t::client, and BluetoothServer_t::recData\&.
+.SS "void BluetoothServer_readInt (\fBBluetoothServer_t\fP * server, int * dst)"
+Read integer value(s) from a connected Bluetooth client 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIserver\fP Instance of \fBBluetoothServer_t\fP 
+.br
+\fIdst\fP Destination of received data 
+.RE
+.PP
+
+.PP
+Definition at line 64 of file bluetoothController\&.c\&.
+.PP
+References BluetoothServer_t::client, and BluetoothServer_t::recData\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bowls Eye from the source code\&.

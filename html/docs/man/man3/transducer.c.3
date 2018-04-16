@@ -1,0 +1,71 @@
+.TH "transducer.c" 3 "Sun Mar 25 2018" "Version 1.0" "Bowls Eye" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+transducer.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'transducer\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBTransducer_construct\fP (\fBTransducer_t\fP *transducer, int pin)"
+.br
+.ti -1c
+.RI "double \fBTransducer_excite\fP (\fBTransducer_t\fP *transducer)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Harvey Leicester 
+.RE
+.PP
+
+.PP
+Definition in file \fBtransducer\&.c\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "void Transducer_construct (\fBTransducer_t\fP * transducer, int pin)"
+Constructor for \fBTransducer_t\fP 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItransducer\fP Instance of \fBTransducer_t\fP 
+.br
+\fIpin\fP Pin used to drive transducer 
+.RE
+.PP
+
+.PP
+Definition at line 15 of file transducer\&.c\&.
+.PP
+References Transducer_t::timeStamp, and Transducer_t::txPin\&.
+.SS "double Transducer_excite (\fBTransducer_t\fP * transducer)"
+Excite/drive the transducer 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItransducer\fP Instance of \fBTransducer_t\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Time of excitation 
+.RE
+.PP
+
+.PP
+Definition at line 29 of file transducer\&.c\&.
+.PP
+References Transducer_t::timeStamp, and Transducer_t::txPin\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bowls Eye from the source code\&.

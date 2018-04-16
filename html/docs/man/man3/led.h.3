@@ -1,0 +1,110 @@
+.TH "led.h" 3 "Mon Apr 16 2018" "Version 1.0" "Bowls Eye" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+led.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <pigpio\&.h>\fP
+.br
+\fC#include <stdint\&.h>\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBLED_t\fP"
+.br
+.RI "\fIWrapper for interfacing with LEDs (or other gpio pins) \fP"
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBLED_construct\fP (\fBLED_t\fP *led, int pin)"
+.br
+.ti -1c
+.RI "void \fBLED_toggle\fP (\fBLED_t\fP *led, double time)"
+.br
+.ti -1c
+.RI "void \fBLED_high\fP (\fBLED_t\fP *led)"
+.br
+.ti -1c
+.RI "void \fBLED_low\fP (\fBLED_t\fP *led)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Harvey Leicester 
+.RE
+.PP
+
+.PP
+Definition in file \fBled\&.h\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "void LED_construct (\fBLED_t\fP * led, int pin)"
+Constructor for \fBLED_t\fP 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIled\fP Instance of \fBLED_t\fP 
+.br
+\fIpin\fP Pin to assign to LED 
+.RE
+.PP
+
+.PP
+Definition at line 15 of file led\&.c\&.
+.PP
+References LED_t::pin, and LED_t::state\&.
+.SS "void LED_high (\fBLED_t\fP * led)"
+Set LED high 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIled\fP Instance of \fBLED_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 43 of file led\&.c\&.
+.PP
+References LED_t::pin, and LED_t::state\&.
+.SS "void LED_low (\fBLED_t\fP * led)"
+Set LED low 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIled\fP Instance of \fBLED_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 53 of file led\&.c\&.
+.PP
+References LED_t::pin, and LED_t::state\&.
+.SS "void LED_toggle (\fBLED_t\fP * led, double time)"
+Toggle LED 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIled\fP Instance of \fBLED_t\fP 
+.br
+\fItime\fP Time to toggle 
+.RE
+.PP
+
+.PP
+Definition at line 29 of file led\&.c\&.
+.PP
+References LED_t::pin, and LED_t::state\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bowls Eye from the source code\&.

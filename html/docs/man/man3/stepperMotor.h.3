@@ -1,0 +1,299 @@
+.TH "stepperMotor.h" 3 "Mon Apr 16 2018" "Version 1.0" "Bowls Eye" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+stepperMotor.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <pigpio\&.h>\fP
+.br
+\fC#include 'globals\&.h'\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBStepperMotor_t\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBStepperMotor_construct\fP (\fBStepperMotor_t\fP *stepper)"
+.br
+.ti -1c
+.RI "void \fBStepperMotor_enable\fP (\fBStepperMotor_t\fP *stepper)"
+.br
+.ti -1c
+.RI "void \fBStepperMotor_update\fP (\fBStepperMotor_t\fP *stepper)"
+.br
+.ti -1c
+.RI "void \fBStepperMotor_setDirection\fP (\fBStepperMotor_t\fP *stepper, uint8_t direction)"
+.br
+.ti -1c
+.RI "void \fBStepperMotor_setStepSize\fP (\fBStepperMotor_t\fP *stepper, int *multiple)"
+.br
+.ti -1c
+.RI "void \fBStepperMotor_enA\fP (\fBStepperMotor_t\fP *stepper)"
+.br
+.ti -1c
+.RI "void \fBStepperMotor_enB\fP (\fBStepperMotor_t\fP *stepper)"
+.br
+.ti -1c
+.RI "void \fBStepperMotor_disable\fP (\fBStepperMotor_t\fP *stepper)"
+.br
+.ti -1c
+.RI "void \fBStepperMotor_incrementStep\fP (\fBStepperMotor_t\fP *stepper)"
+.br
+.ti -1c
+.RI "void \fBStepperMotor_decrementStep\fP (\fBStepperMotor_t\fP *stepper)"
+.br
+.ti -1c
+.RI "void \fBStepperMotor_wrapStep\fP (\fBStepperMotor_t\fP *stepper)"
+.br
+.ti -1c
+.RI "void \fBStepperMotor_step0\fP (\fBStepperMotor_t\fP *stepper)"
+.br
+.ti -1c
+.RI "void \fBStepperMotor_step1\fP (\fBStepperMotor_t\fP *stepper)"
+.br
+.ti -1c
+.RI "void \fBStepperMotor_step2\fP (\fBStepperMotor_t\fP *stepper)"
+.br
+.ti -1c
+.RI "void \fBStepperMotor_step3\fP (\fBStepperMotor_t\fP *stepper)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Harvey Leicester 
+.RE
+.PP
+
+.PP
+Definition in file \fBstepperMotor\&.h\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "void StepperMotor_construct (\fBStepperMotor_t\fP * stepper)"
+Constructor for \fBStepperMotor_t\fP 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIstepper\fP Instance of \fBStepperMotor_t\fP 
+.br
+\fImultiple\fP Multiple of minimum step angle (0\&.9deg), defines angular resolution of system 
+.RE
+.PP
+
+.PP
+Definition at line 19 of file stepperMotor\&.c\&.
+.PP
+References StepperMotor_t::direction, StepperMotor_t::pinB1, StepperMotor_t::pinEnA, StepperMotor_enable(), StepperMotor_step0(), StepperMotor_step1(), StepperMotor_step2(), StepperMotor_step3(), StepperMotor_t::totalSteps, and StepperMotor_t::waitTime\&.
+.SS "void StepperMotor_decrementStep (\fBStepperMotor_t\fP * stepper)"
+Decrement the current step of the motor 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIstepper\fP Instance of \fBStepperMotor_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 163 of file stepperMotor\&.c\&.
+.PP
+References StepperMotor_wrapStep(), and StepperMotor_t::totalSteps\&.
+.PP
+Referenced by StepperMotor_update(), and StepperMotor_wrapStep()\&.
+.SS "void StepperMotor_disable (\fBStepperMotor_t\fP * stepper)"
+Disable the stepper motor 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIstepper\fP Instance of \fBStepperMotor_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 117 of file stepperMotor\&.c\&.
+.PP
+References StepperMotor_t::pinB1, and StepperMotor_t::pinEnA\&.
+.SS "void StepperMotor_enA (\fBStepperMotor_t\fP * stepper)"
+Enable the A H bridge of the stepper motor driver 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIstepper\fP 
+.RE
+.PP
+
+.PP
+Definition at line 132 of file stepperMotor\&.c\&.
+.PP
+References StepperMotor_t::pinEnA\&.
+.SS "void StepperMotor_enable (\fBStepperMotor_t\fP * stepper)"
+Enable the stepper motor 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIstepper\fP Instance of \fBStepperMotor_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 102 of file stepperMotor\&.c\&.
+.PP
+References StepperMotor_t::pinB1, and StepperMotor_t::pinEnA\&.
+.PP
+Referenced by StepperMotor_construct()\&.
+.SS "void StepperMotor_enB (\fBStepperMotor_t\fP * stepper)"
+Enable the B H bridge of the stepper motor driver 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIstepper\fP 
+.RE
+.PP
+
+.PP
+Definition at line 141 of file stepperMotor\&.c\&.
+.SS "void StepperMotor_incrementStep (\fBStepperMotor_t\fP * stepper)"
+Increment the current step of the motor 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIstepper\fP Instance of \fBStepperMotor_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 150 of file stepperMotor\&.c\&.
+.PP
+References StepperMotor_wrapStep(), and StepperMotor_t::totalSteps\&.
+.PP
+Referenced by StepperMotor_update(), and StepperMotor_wrapStep()\&.
+.SS "void StepperMotor_setDirection (\fBStepperMotor_t\fP * stepper, uint8_t direction)"
+Set the rotational direction of the motor 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIstepper\fP Instance of \fBStepperMotor_t\fP 
+.br
+\fIdirection\fP Direction to assign 
+.RE
+.PP
+
+.PP
+Definition at line 93 of file stepperMotor\&.c\&.
+.PP
+References StepperMotor_t::direction\&.
+.SS "void StepperMotor_setStepSize (\fBStepperMotor_t\fP * stepper, int * multiple)"
+Set the size of the motor step increment, defines the angular resolution of the system 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIstepper\fP Instance of \fBStepperMotor_t\fP 
+.br
+\fImultiple\fP Multiple of minimum step increment (0\&.9deg) 
+.RE
+.PP
+
+.PP
+Definition at line 83 of file stepperMotor\&.c\&.
+.SS "void StepperMotor_step0 (\fBStepperMotor_t\fP * stepper)"
+Method for performing a step 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIstepper\fP Instance of \fBStepperMotor_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 243 of file stepperMotor\&.c\&.
+.PP
+References StepperMotor_t::pinB1\&.
+.PP
+Referenced by StepperMotor_construct()\&.
+.SS "void StepperMotor_step1 (\fBStepperMotor_t\fP * stepper)"
+Method for performing a step 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIstepper\fP Instance of \fBStepperMotor_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 231 of file stepperMotor\&.c\&.
+.PP
+References StepperMotor_t::pinB1\&.
+.PP
+Referenced by StepperMotor_construct()\&.
+.SS "void StepperMotor_step2 (\fBStepperMotor_t\fP * stepper)"
+Method for performing a step 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIstepper\fP Instance of \fBStepperMotor_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 219 of file stepperMotor\&.c\&.
+.PP
+References StepperMotor_t::pinB1\&.
+.PP
+Referenced by StepperMotor_construct()\&.
+.SS "void StepperMotor_step3 (\fBStepperMotor_t\fP * stepper)"
+Method for performing a step 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIstepper\fP Instance of \fBStepperMotor_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 207 of file stepperMotor\&.c\&.
+.PP
+References StepperMotor_t::pinB1\&.
+.PP
+Referenced by StepperMotor_construct()\&.
+.SS "void StepperMotor_update (\fBStepperMotor_t\fP * stepper)"
+Update the stepper motor position 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIstepper\fP Instance of \fBStepperMotor_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 54 of file stepperMotor\&.c\&.
+.PP
+References StepperMotor_t::direction, StepperMotor_decrementStep(), StepperMotor_incrementStep(), and StepperMotor_t::waitTime\&.
+.SS "void StepperMotor_wrapStep (\fBStepperMotor_t\fP * stepper)"
+Wrap current step of motor at limits 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIstepper\fP Instance of \fBStepperMotor_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 175 of file stepperMotor\&.c\&.
+.PP
+References StepperMotor_decrementStep(), StepperMotor_incrementStep(), StepperMotor_t::totalSteps, and StepperMotor_t::waitTime\&.
+.PP
+Referenced by StepperMotor_decrementStep(), and StepperMotor_incrementStep()\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bowls Eye from the source code\&.

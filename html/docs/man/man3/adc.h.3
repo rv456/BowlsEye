@@ -1,0 +1,106 @@
+.TH "adc.h" 3 "Mon Apr 16 2018" "Version 1.0" "Bowls Eye" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+adc.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <pigpio\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <pthread\&.h>\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBADCController_t\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBADCController_construct\fP (\fBADCController_t\fP *adcCont, int spiHandle, int userParam)"
+.br
+.ti -1c
+.RI "void \fBADCController_constructBuffers\fP (void)"
+.br
+.RI "\fIConstruct the ADC buffers\&. \fP"
+.ti -1c
+.RI "void \fBADCController_convertToInt\fP (\fBADCController_t\fP *adcCont, int *dst)"
+.br
+.ti -1c
+.RI "void \fBADCController_update\fP (\fBADCController_t\fP *adcCont)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Harvey Leicester 
+.RE
+.PP
+
+.PP
+Definition in file \fBadc\&.h\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "int ADCController_construct (\fBADCController_t\fP * adcCont, int spiHandle, int userParam)"
+Constructor for \fBADCController_t\fP 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIadcCont\fP Instance of \fBADCController_t\fP 
+.br
+\fIspiHandle\fP SPI configuation to assign 
+.br
+\fIuserParam\fP User parameters to assign 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+SPI handle 
+.RE
+.PP
+
+.PP
+Definition at line 34 of file adc\&.c\&.
+.PP
+References ADCController_constructBuffers(), ADCController_t::channel, ADCController_t::rxBuf, ADCController_t::spiHandle, ADCController_t::txBuf, and ADCController_t::userMaxDistance\&.
+.SS "void ADCController_convertToInt (\fBADCController_t\fP * adcCont, int * dst)"
+Convert read bytes from ADC to integer values 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIadcCont\fP Instance of \fBADCController_t\fP 
+.br
+\fIdst\fP Destination to store ADC values 
+.RE
+.PP
+
+.PP
+Definition at line 66 of file adc\&.c\&.
+.PP
+References ADCController_t::rxBuf, and ADCController_t::userMaxDistance\&.
+.SS "void ADCController_update (\fBADCController_t\fP * adcCont)"
+Update the ADC reading routine 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIadcCont\fP Instance of \fBADCController_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 54 of file adc\&.c\&.
+.PP
+References ADCController_t::channel, ADCController_t::rxBuf, ADCController_t::spiHandle, ADCController_t::txBuf, and ADCController_t::userMaxDistance\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Bowls Eye from the source code\&.
