@@ -104,10 +104,10 @@ class tooth_com(QThread):
 			QThread.__init__(self,terminal)
 			self._isConnected=0
 			self.terminal=terminal
-			self.device='34:C9:F0:84:27:0B'
+			self.device='B8:27:EB:7F:72:74'
 
 	def update(self,device):
-		self.device='34:C9:F0:84:27:0B'
+		self.device='B8:27:EB:7F:72:74'
 
 	def connect_client(self):
 		if self.device==None:
